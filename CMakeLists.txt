@@ -14,6 +14,7 @@ project(rtt_soem_maxpos)
 
 
 find_package(catkin REQUIRED message_generation rtt_roscomm)
+
 find_package(OROCOS-RTT QUIET)
 if (NOT OROCOS-RTT_FOUND)
   message (FATAL_ERROR "\nCould not find Orocos. Please use the shell command\n 'source orocos_toolchain/env.sh' and then run cmake again.")

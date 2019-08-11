@@ -1,0 +1,13 @@
+########################################
+## Using the standard orocos deployer ##
+
+##load the lua service
+loadService ("Deployer","Lua")
+
+import("rtt_ros")
+ros.import("rtt_rospack")
+
+##execute your deployment file
+var string path= ros.find("rtt_soem_maxpos")
+Lua.exec_file(path +"/start.lua")
+
