@@ -100,6 +100,7 @@ SoemMaxPos::SoemMaxPos(ec_slavet* mem_loc) :
   m_service->doc(std::string("MaxPos") + std::string(
                    m_datap->name) );
 
+  //output ports
   m_service->addPort("status",status_word_outport).doc("written if values changes");
   m_service->addPort("digital_inputs",digital_inputs_outport).doc("written if values changes");
   m_service->addPort("touch_probe",touch_probe_status_outport).doc("written if values changes");
@@ -110,6 +111,11 @@ SoemMaxPos::SoemMaxPos(ec_slavet* mem_loc) :
   m_service->addPort("velocity_ros",velocity_outport_ds).doc("downsapled port");
   m_service->addPort("torque",torque_outport);
   m_service->addPort("torque_ros",torque_outport_ds).doc("downsapled port");
+
+  //input ports
+  m_service->addPort("target_position",target_position_inport);
+  m_service->addPort("target_velocity",target_velocity_inport);
+  m_service->addPort("target_torque",target_torque_inport);
 
   m_service->addProperty("rev_position_ratio",rev_position_ratio).doc("ratio revolution/(angle or meters)");
   m_service->addProperty("rev_velocity_ratio",rev_velocity_ratio).doc("ratio to convert rpm to angle/s or meters/s");
@@ -138,19 +144,19 @@ SoemMaxPos::SoemMaxPos(ec_slavet* mem_loc) :
 
   m_service->addOperation("set_mode_of_operation", &SoemMaxPos::set_mode_of_operation, this, RTT::OwnThread).doc(
         "change operational mode, returns true on success").arg("desired mode of operation"," values\n"
-                                                                "/t/t1 Profile Position Mode (PPM) -not implemented \n"
-                                                                "/t/t3 Profile Velocity Mode (PVM) -not implemented \n"
-                                                                "/t/t6 Homing Mode (HMM) -not implemented n"
-                                                                "/t/t8 Cyclic Synchronous Position Mode (CSP)\n"
-                                                                "/t/t9 Cyclic Synchronous Velocity Mode (CSV)\n"
-                                                                "/t/t10 Cyclic Synchronous Torque Mode (CST)");
+                                                                                            "/t/t1 Profile Position Mode (PPM) -not implemented \n"
+                                                                                            "/t/t3 Profile Velocity Mode (PVM) -not implemented \n"
+                                                                                            "/t/t6 Homing Mode (HMM) -not implemented n"
+                                                                                            "/t/t8 Cyclic Synchronous Position Mode (CSP)\n"
+                                                                                            "/t/t9 Cyclic Synchronous Velocity Mode (CSV)\n"
+                                                                                            "/t/t10 Cyclic Synchronous Torque Mode (CST)");
 }
 
 bool SoemMaxPos::set_mode_of_operation(int mode)
 {
   if (mode!=8 && mode!=9 && mode!=10){
       Logger::In in(this->getName());
-    log(Error)<< m_datap->name<<" : requested mode is not implemented, only 8,9,10 currently implemented." << endlog();
+      log(Error)<< m_datap->name<<" : requested mode is not implemented, only 8,9,10 currently implemented." << endlog();
     }
   int8 value=mode;
   int8 new_value=0;
@@ -177,6 +183,10 @@ bool SoemMaxPos::configure()
   //ts_ = upla->getPeriod();
   //std::cout << m_name << ": Period of owner: " << ts_ << std::endl;
   // Set initial configuration parameters
+  ((control_msg*) (m_datap->outputs))->target_position=(int32) 0;
+  ((control_msg*) (m_datap->outputs))->target_velocity=(int32) 0;
+  ((control_msg*) (m_datap->outputs))->target_torque=(int16) 0;
+
 
   return true;
   iteration=0;
@@ -186,8 +196,8 @@ bool SoemMaxPos::configure()
 
 void SoemMaxPos::update()
 {
-std_msgs::UInt32 digital_inputs;
-std_msgs::UInt16 touch_probe_status;
+  std_msgs::UInt32 digital_inputs;
+  std_msgs::UInt16 touch_probe_status;
   // ****************************
   // *** Read data from slave ***
   // ****************************
@@ -202,6 +212,8 @@ std_msgs::UInt16 touch_probe_status;
   std::bitset<16> status_word(status_word_uint);
   touch_probe_status.data= ((read_mgs*) (m_datap->inputs))->touch_probe_status;
   digital_inputs.data= ((read_mgs*) (m_datap->inputs))->digital_inputs;
+
+  //TODO check for error in the status word
 
   //writes on port only if new values are recieved
   if  (status_word!=last_status_word){//request to move in the device state machine
@@ -224,10 +236,10 @@ std_msgs::UInt16 touch_probe_status;
   velocity_outport.write(velocity);
   torque_outport.write(torque);
   if (downsample!=0 && iteration==downsample){
-       std_msgs::Float32 d;
-       d.data=position;position_outport_ds.write(d);
-       d.data=velocity;velocity_outport_ds.write(d);
-       d.data=torque;torque_outport_ds.write(d);
+      std_msgs::Float32 d;
+      d.data=position;position_outport_ds.write(d);
+      d.data=velocity;velocity_outport_ds.write(d);
+      d.data=torque;torque_outport_ds.write(d);
     }
 
 
@@ -236,7 +248,19 @@ std_msgs::UInt16 touch_probe_status;
   // ***************************
 
 
-  ((control_msg*) (m_datap->outputs))->control_word =(unsigned short)new_control_word.to_ulong();
+
+  double data;
+  if (target_position_inport.read(data)!=RTT::NoData){
+      ((control_msg*) (m_datap->outputs))->target_position = (int32)(data*rev_position_ratio);
+    }
+  if (target_velocity_inport.read(data)!=RTT::NoData){
+      ((control_msg*) (m_datap->outputs))->target_velocity = (int32)(data*rev_velocity_ratio);
+    }
+  if (target_torque_inport.read(data)!=RTT::NoData){
+      ((control_msg*) (m_datap->outputs))->target_torque = (int16)(data);
+    }
+  //control word is set via operation
+  ((control_msg*) (m_datap->outputs))->control_word = (unsigned short)new_control_word.to_ulong();
 
 
 }

@@ -56,7 +56,7 @@ class SoemMaxPos : public soem_master::SoemDriver
     uint16 control_word;
     int32 target_position;
     int32 target_velocity;
-    int16 target_Torque;
+    int16 target_torque;
     uint32 physical_outputs;
     uint16 touch_probe_function;
     int32 velocity_offset;
@@ -102,9 +102,9 @@ private:
   RTT::OutputPort<std_msgs::UInt32 > digital_inputs_outport;
   RTT::OutputPort<std_msgs::UInt16 > touch_probe_status_outport;
 
-  RTT::InputPort<double> target_pos;
-  RTT::InputPort<double> target_vel;
-  RTT::InputPort<double> target_torque;
+  RTT::InputPort<double> target_position_inport;
+  RTT::InputPort<double> target_velocity_inport;
+  RTT::InputPort<double> target_torque_inport;
 
 
 
