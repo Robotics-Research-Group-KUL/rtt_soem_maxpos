@@ -47,6 +47,21 @@
 #define FAULT_REACTION_ACTIVE   0b00011111
 #define FAULT                   0b00001000
 //note: fault is the 4th bit set
+bool state_to_string(std::bitset<16> state,std::string &st){
+  std::bitset<8> state_short(state.to_ulong());//discard Most Significant 8 bits
+  state_short.set(7,false);
+  uint8 s=(uint)state_short.to_ulong();
+  if (NOT_READY_TO_SWITCH_ON==s) { st="NOT_READY_TO_SWITCH_ON"; return true;}
+  if (SWITCH_ON_DISABLED==s)     { st="SWITCH_ON_DISABLED";return true;}
+  if (READY_TO_SWITCH_ON==s)     { st="READY_TO_SWITCH_ON";return true;}
+  if (SWITCHED_ON==s)            { st="SWITCHED_ON";return true;}
+  if (OPERATION_ENABLE==s)       { st="OPERATION_ENABLE";return true;}
+  if (QUICK_STOP_ACTIVE==s)      { st="QUICK_STOP_ACTIVE";return true;}
+  if (FAULT_REACTION_ACTIVE==s)  { st="FAULT_REACTION_ACTIVE";return true;}
+  if (FAULT==s)                  { st="FAULT";return true;}
+return false;
+
+}
 
 class SoemMaxPos : public soem_master::SoemDriver
 {
@@ -119,6 +134,8 @@ private:
   //properties
   double rev_position_ratio;
   double rev_velocity_ratio;
+  //constant attributes
+  double motor_rated_torque;// constant to convert percent to  Nm
 
   int downsample;
 

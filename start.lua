@@ -30,8 +30,6 @@ ros:import("rtt_soem_maxpos")
 
 
 
-
-
 rtt_soem_maxpos_dir=ros:find("rtt_soem_maxpos")
 
 
@@ -51,6 +49,11 @@ Master:setPeriod(0.01)
 Master:configure()
 Master:start()
 
-depl:stream("Master.Slave_1001.Status",
+depl:stream("Master.Slave_1001.status",
         rtt.provides("ros"):topic("/status"))
-
+depl:stream("Master.Slave_1001.position_ros",
+        rtt.provides("ros"):topic("/position_ros"))
+depl:stream("Master.Slave_1001.velocity_ros",
+        rtt.provides("ros"):topic("/velocity"))
+depl:stream("Master.Slave_1001.torque_ros",
+        rtt.provides("ros"):topic("/torque"))
