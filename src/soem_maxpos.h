@@ -9,6 +9,7 @@
 #include <bitset>
 #include <std_msgs/String.h>
 #include <std_msgs/Float32.h>
+#include <std_msgs/UInt8.h>
 #include <std_msgs/UInt16.h>
 #include <std_msgs/UInt32.h>
 /*
@@ -92,6 +93,7 @@ public:
   ~SoemMaxPos(){}
 
   bool configure();
+  bool start();
   void update();
   //functioons to set the command word, needed to escale the state machine and ring the module in working state
   void cw_reset();
@@ -108,6 +110,7 @@ private:
   //RTT::OutputPort<std::vector<double> > position_outport;
   int ros_downsample;
   RTT::OutputPort<std_msgs::String > status_word_outport;
+  RTT::OutputPort<std_msgs::UInt8 > status_word_mode_dep_outport;
   RTT::OutputPort<std_msgs::Float32 > position_outport_ds;
   RTT::OutputPort<double > position_outport;
   RTT::OutputPort<std_msgs::Float32 > velocity_outport_ds;
@@ -129,11 +132,15 @@ private:
   std_msgs::UInt32 last_digital_inputs;
   std_msgs::UInt16 last_touch_probe_status;
 
+  //double pos_coversion_factor;
+  //double vel_coversion_factor;
+  //double tau_coversion_factor;
 
   int iteration;
   //properties
-  double rev_position_ratio;
-  double rev_velocity_ratio;
+
+  double encoder_thick_per_revolution;
+  double gear_ratio;
   //constant attributes
   double motor_rated_torque;// constant to convert percent to  Nm
 

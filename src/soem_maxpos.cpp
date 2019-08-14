@@ -28,7 +28,7 @@
 #include "soem_maxpos.h"
 #include <soem_master/soem_driver_factory.h>
 
-
+#include "math.h"
 
 using namespace RTT;
 
@@ -93,8 +93,8 @@ void SoemMaxPos::cw_fault_reset(){// 1xxx xxxx (should be 0xxx xxxx before)
 SoemMaxPos::SoemMaxPos(ec_slavet* mem_loc) :
   soem_master::SoemDriver(mem_loc)
 , downsample(10)
-, rev_position_ratio(1.0)
-, rev_velocity_ratio(1.0)
+, encoder_thick_per_revolution(512)
+, gear_ratio(1.0)
 , motor_rated_torque(0.0)
 
 {
@@ -102,7 +102,8 @@ SoemMaxPos::SoemMaxPos(ec_slavet* mem_loc) :
                    m_datap->name) );
 
   //output ports
-  m_service->addPort("status",status_word_outport).doc("written if values changes");
+  m_service->addPort("status",status_word_outport).doc("written if values changes,string with current state of the MAXPOS");
+  m_service->addPort("status_8MSB",status_word_mode_dep_outport).doc("written if values changes, state with the 8MSB of the statusword, mode dependent meaning");
   m_service->addPort("digital_inputs",digital_inputs_outport).doc("written if values changes");
   m_service->addPort("touch_probe",touch_probe_status_outport).doc("written if values changes");
 
@@ -118,10 +119,10 @@ SoemMaxPos::SoemMaxPos(ec_slavet* mem_loc) :
   m_service->addPort("target_velocity",target_velocity_inport);
   m_service->addPort("target_torque",target_torque_inport);
 
-  m_service->addProperty("rev_position_ratio",rev_position_ratio).doc("ratio revolution/(angle or meters)");
-  m_service->addProperty("rev_velocity_ratio",rev_velocity_ratio).doc("ratio to convert rpm to angle/s or meters/s");
+  m_service->addProperty("encoder_thick_per_revolution",encoder_thick_per_revolution);
+  m_service->addProperty("gear_ratio",gear_ratio);
 
-  m_service->addProperty("Downsample",downsample).doc("Downsaple ratio for ds (pos/vel/torque) ports, if 0 will disable it");
+  m_service->addProperty("downsample",downsample).doc("Downsaple ratio for ds (pos/vel/torque) ports, if 0 will disable it");
 
   //operations for escaling the state machine
   m_service->addOperation("reset", &SoemMaxPos::cw_reset, this, RTT::OwnThread).doc(
@@ -168,10 +169,11 @@ bool SoemMaxPos::set_mode_of_operation(int mode)
   retval = ec_SDOwrite(m_slave_nr, 0x6060, 0x00, FALSE, sizeof(value), &value, EC_TIMEOUTSAFE);
   retval = ec_SDOread(m_slave_nr,  0x6061, 0x00, FALSE, &n_of_bytes , &new_value, EC_TIMEOUTSAFE);
 
-  if (value!=new_value)
-    Logger::In in(this->getName());
-  log(Error)<< m_datap->name<<" : not able to set requested mode of operation." << endlog();
-  return false;
+  if (value!=new_value){
+      Logger::In in(this->getName());
+      log(Error)<< m_datap->name<<" : not able to set requested mode of operation.\n" << endlog();
+      return false;
+    }
   return true;
 
 }
@@ -185,10 +187,6 @@ bool SoemMaxPos::configure()
   //ts_ = upla->getPeriod();
   //std::cout << m_name << ": Period of owner: " << ts_ << std::endl;
   // Set initial configuration parameters
-  ((control_msg*) (m_datap->outputs))->target_position=(int32) 0;
-  ((control_msg*) (m_datap->outputs))->target_velocity=(int32) 0;
-  ((control_msg*) (m_datap->outputs))->target_torque=(int16) 0;
-
   //we need to read the motor rated torque in order to be able convert % to phisical value
   //motor_rated_torque_unit is in MICRO Nm -> motor_rated_torque is in Nm
   uint32 motor_rated_torque_unit;
@@ -202,28 +200,38 @@ bool SoemMaxPos::configure()
     }
   motor_rated_torque=((double)motor_rated_torque_unit)/1000000.0;
   m_service->addConstant("motor_rated_torque",motor_rated_torque);
-  std::cout<<"motor_rated_torque_unit: "<<motor_rated_torque_unit<<" motor_rated_torque< "<<motor_rated_torque<<std::endl;
 
   return true;
   iteration=0;
 }
-
+bool SoemMaxPos::start(){
+  ((control_msg*) (m_datap->outputs))->target_position=(int32) 0;
+  ((control_msg*) (m_datap->outputs))->target_velocity=(int32) 0;
+  ((control_msg*) (m_datap->outputs))->target_torque=(int16) 0;
+  return true;
+}
 
 
 void SoemMaxPos::update()
 {
   std_msgs::UInt32 digital_inputs;
   std_msgs::UInt16 touch_probe_status;
+
+  double pos_coversion_factor=((2*M_PI)/encoder_thick_per_revolution)/gear_ratio; //thick->radiants/sec (or other depending by the unit of the gear ratio)
+  double vel_coversion_factor=((2*M_PI)/60.0)/gear_ratio;
+  double tau_coversion_factor=(motor_rated_torque/1000.0)*gear_ratio;
   // ****************************
   // *** Read data from slave ***
   // ****************************
 
+
   double position= (double)((read_mgs*) (m_datap->inputs))->position_actual_value;//rev
   double velocity= (double)((read_mgs*) (m_datap->inputs))->velocity_actual_value;//rpm
   double torque= (double)((read_mgs*) (m_datap->inputs))->torque_actual_value;//percentage of motor_rated_torque
-  position/=rev_position_ratio;//rev / (rev/rad)
-  velocity/=rev_velocity_ratio;//rpm / (rev/rad)*60?
-  torque=torque*100.0*motor_rated_torque;//Nm (motor_rated_torque already converted from micro Nm to Nm)
+
+  position*=pos_coversion_factor;
+  velocity*=vel_coversion_factor;
+  torque*=tau_coversion_factor;
 
   uint16 status_word_uint= ((read_mgs*) (m_datap->inputs))->status_word;
   std::bitset<16> status_word(status_word_uint);
@@ -233,15 +241,29 @@ void SoemMaxPos::update()
   //TODO check for error in the status word
 
   //writes on port only if new values are recieved
-  if  (status_word!=last_status_word){//request to move in the device state machine
-      std::cout<<"status_word\t"<<status_word.to_string()<<"\n"<<std::endl;//TODO take out after test
 
-      if (!state_to_string(status_word,status_word_msg.data))
-        status_word_msg.data="ERROR IN TRANSLATION";
-      std::cout<<"status \t"<<status_word_msg.data<<"\n"<<std::endl;//TODO take out after test
+  if  (status_word!=last_status_word){//change of state
+      //check least significative 8 bit
+      uint8 sw_ls=static_cast<uint8>(status_word.to_ulong());
+      uint8 lsw_ls=static_cast<uint8>(last_status_word.to_ulong());
+      if (sw_ls!=lsw_ls)
+        {
+          if (!state_to_string(status_word,status_word_msg.data))
+            status_word_msg.data="ERROR_IN_STATE_INTERPRETATION";
+          status_word_outport.write(status_word_msg);
+        }
+      //check most significative 8 bit
+      uint8 sw_ms=static_cast<uint8>(status_word.to_ulong()>>8);
+      uint8 lsw_ms=static_cast<uint8>(last_status_word.to_ulong()>>8);
+      if (sw_ms!=lsw_ms)
+        {
+          std_msgs::UInt8 status_word_high;
+          status_word_high.data  =sw_ms;
+
+
+          status_word_mode_dep_outport.write(status_word_high);
+        }
       last_status_word=status_word;
-
-      status_word_outport.write(status_word_msg);
     }
   if  (digital_inputs.data!=last_digital_inputs.data){
       digital_inputs_outport.write(digital_inputs);
@@ -255,13 +277,16 @@ void SoemMaxPos::update()
   position_outport.write(position);
   velocity_outport.write(velocity);
   torque_outport.write(torque);
-  if (downsample!=0 && iteration==downsample){
-      std_msgs::Float32 d;
-      d.data=position;position_outport_ds.write(d);
-      d.data=velocity;velocity_outport_ds.write(d);
-      d.data=torque;torque_outport_ds.write(d);
+  if (downsample!=0){
+      if(iteration>=downsample-1){
+          std_msgs::Float32 d;
+          d.data=position;position_outport_ds.write(d);
+          d.data=velocity;velocity_outport_ds.write(d);
+          d.data=torque;torque_outport_ds.write(d);
+          iteration=0;
+        }
+      else iteration++;
     }
-
 
   // ***************************
   // *** Write data to slave ***
@@ -271,14 +296,13 @@ void SoemMaxPos::update()
 
   double data;
   if (target_position_inport.read(data)!=RTT::NoData){
-      ((control_msg*) (m_datap->outputs))->target_position = (int32)(data*rev_position_ratio);
+      ((control_msg*) (m_datap->outputs))->target_position = (int32)(data/pos_coversion_factor);
     }
   if (target_velocity_inport.read(data)!=RTT::NoData){
-      ((control_msg*) (m_datap->outputs))->target_velocity = (int32)(data*rev_velocity_ratio);
+      ((control_msg*) (m_datap->outputs))->target_velocity = (int32)(data/vel_coversion_factor);
     }
   if (target_torque_inport.read(data)!=RTT::NoData){
-      data=data/(100.0*motor_rated_torque);
-      ((control_msg*) (m_datap->outputs))->target_torque = (int16)(data);
+      ((control_msg*) (m_datap->outputs))->target_torque = (int16)(data/tau_coversion_factor);
     }
   //control word is set via operation
   ((control_msg*) (m_datap->outputs))->control_word = (unsigned short)new_control_word.to_ulong();
