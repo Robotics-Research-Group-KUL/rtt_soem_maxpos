@@ -69,7 +69,7 @@ The last factor **should be ok** but direct torque control has not be tested exp
 
 In case you know the efficiency of the transimission, you can modify the code to take it into account.
 
-##Additional documentation
+## Additional documentation
 in the doc folder there is the results of the `slaveinfo` command, with the  `-sdo` and `-map` options. These files can be useful to add further functionalities.
 
 ##  Acknowledgements

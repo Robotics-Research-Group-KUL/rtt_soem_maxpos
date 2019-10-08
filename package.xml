@@ -1,6 +1,6 @@
 <package>
   <name>rtt_soem_maxpos</name>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <description>This package contains drivers for maxpos motor drives. These drivers are to be used with the soem master component of Orocos</description>
   <maintainer email="gianni.borghesan@kuleuven.be">Gianni Borghesan</maintainer>
 
