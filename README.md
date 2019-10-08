@@ -73,4 +73,4 @@ In case you know the efficiency of the transimission, you can modify the code to
 in the doc folder there is the results of the `slaveinfo` command, with the  `-sdo` and `-map` options. These files can be useful to add further functionalities.
 
 ## Acknoledgements
-We coded using as example the of the soem_robotiq drivers.
+We coded using as example the soem_robotiq drivers.
