@@ -1,15 +1,17 @@
 <package>
   <name>rtt_soem_maxpos</name>
   <version>1.0.0</version>
-  <description>This package contains drivers for maxpos motor drives</description>
-  <maintainer email="unknown@maintainer.com">Unknown Author</maintainer>
+  <description>This package contains drivers for maxpos motor drives. These drivers are to be used with the soem master component of Orocos</description>
+  <maintainer email="gianni.borghesan@kuleuven.be">Gianni Borghesan</maintainer>
 
-  <license>Unknown</license>
+  <license>LGPL</license>
 
   <url type="website"></url>
   <!-- <url type="bugtracker"></url> -->
 
-  <author>Unknown Author</author>
+  <author>Gianni Borghesan</author>
+  <author>Sergio Portolez</author>
+
 
   <buildtool_depend>catkin</buildtool_depend>
 

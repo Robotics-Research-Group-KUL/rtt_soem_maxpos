@@ -1,0 +1,6 @@
+.tb_history
+*.user
+doc/example_soem_write_to_coe.txt
+doc/*.pdf
+*.log
+

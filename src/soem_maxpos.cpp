@@ -1,11 +1,9 @@
 /***************************************************************************
- tag: Bert Willaert  Fri Sept 21 09:31:20 CET 2012  soem_robotiq_3Finger.cpp
-
- soem_robotiq_3Finger.cpp -  description
+ soem_maxpos.cpp -  description
  -------------------
- begin                : Fri September 21 2012
- copyright            : (C) 2012 Bert Willaert
- email                : first.last@mech.kuleuven.be
+ begin                : October 8 2019
+ copyright            : (C) 2019 Gianni Borghesan, Sergio Portolez
+ email                : first.last@kuleuven.be
 
  ***************************************************************************
  *   This library is free software; you can redistribute it and/or         *
