@@ -19,7 +19,7 @@ The other 3 modes
 
 Are not implemented, but can be easily done following the code.
 
-At the moment, also the writing of digiral output is not possible, as there is the need to configure the Digital IO accordingly. Again this functionlaity can be added.
+At the moment, also the writing of digital output is not possible, as there is the need to configure the Digital IO accordingly. Again, this functionality can be added.
 
 ## Usage
 
@@ -41,8 +41,8 @@ enable_operation()
  
  The `set_mode_of_operation` must be called before motors are powered. The used values are the one used in the firmware, and are: 
  
-- 1:   Profile Position Mode (PPM) - *not implemented *
-- 3:   Profile Velocity Mode (PVM) - *not implemented *
+- 1:   Profile Position Mode (PPM) - *not implemented*
+- 3:   Profile Velocity Mode (PVM) - *not implemented*
 - 6:   Homing Mode (HMM) - *not implemented*
 - 8:   Cyclic Synchronous Position Mode (CSP)
 - 9:   Cyclic Synchronous Velocity Mode (CSV)
@@ -52,6 +52,7 @@ enable_operation()
 There are two values (properties) to be set:
 - `encoder_thick_per_revolution`
 - `gear_ratio`
+
 Another value, the `motor_rated_torque` is queried from the driver.
 Please note that the driver comunicates in terms of percent of the *motor rated torque*. This is translated in _normal_ torque.
 
