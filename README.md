@@ -3,7 +3,7 @@
 ## Intro
 
 This driver for orocos soem master compoennt allows to use connect via Ethercat with the maxon max-pos controller.
-The way the controller works is specified in the [MAXPOS firmware specification manual](http://academy.maxonjapan.co.jp/wp-content/uploads/manual/maxpos/MAXPOS-Firmware-Specification-En.pdf).
+The way the controller works is specified in the [MAXPOS firmware specification manual](https://www.maxongroup.com/medias/sys_master/8813773258782.pdf).
 
 For the moment I implemented the control modes that i need, the direct control modes.
 
