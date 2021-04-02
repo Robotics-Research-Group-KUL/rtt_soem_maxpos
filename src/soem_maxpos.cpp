@@ -87,6 +87,24 @@ void SoemMaxPos::cw_enable_operation(){// 0xxx 1111
 void SoemMaxPos::cw_fault_reset(){// 1xxx xxxx (should be 0xxx xxxx before)
   new_control_word.set(7);
 }
+bool  SoemMaxPos::velocity_ramp(double velocity,double accelleration){
+	if(false==_set_mode_of_operation(3)) {
+		return false;
+	}
+	int speed=(int)velocity;
+	uint accel=(uint)accelleration;
+	int retval;
+
+	retval = ec_SDOwrite(m_slave_nr, 0x60FF, 0x00, FALSE, sizeof(speed), &speed, EC_TIMEOUTSAFE);
+	retval = ec_SDOwrite(m_slave_nr, 0x6083, 0x00, FALSE, sizeof(accel), &accel, EC_TIMEOUTSAFE);
+	retval = ec_SDOwrite(m_slave_nr, 0x6084, 0x00, FALSE, sizeof(accel), &accel, EC_TIMEOUTSAFE);
+return true;
+}
+/*
+ * Target Velocity 0x60FF The speed the drive is supposed to reach
+Profile Acceleration 0x6083 Defines the acceleration ramp during a movement
+Profile Deceleration 0x6084*/
+
 
 SoemMaxPos::SoemMaxPos(ec_slavet* mem_loc) :
   soem_master::SoemDriver(mem_loc)
@@ -104,6 +122,9 @@ SoemMaxPos::SoemMaxPos(ec_slavet* mem_loc) :
   m_service->addPort("status_8MSB",status_word_mode_dep_outport).doc("written if values changes, state with the 8MSB of the statusword, mode dependent meaning");
   m_service->addPort("digital_inputs",digital_inputs_outport).doc("written if values changes");
   m_service->addPort("touch_probe",touch_probe_status_outport).doc("written if values changes");
+
+  m_service->addPort("modes_of_operation_display",modes_of_operation_display_outport)
+		  .doc("current mode of operation");
 
   m_service->addPort("position",position_outport);
   m_service->addPort("position_ros",position_outport_ds).doc("downsampled port");
@@ -142,38 +163,46 @@ SoemMaxPos::SoemMaxPos(ec_slavet* mem_loc) :
 
 
   m_service->addOperation("set_mode_of_operation", &SoemMaxPos::set_mode_of_operation, this, RTT::OwnThread).doc(
-        "change operational mode, returns true on success").arg("desired mode of operation"," values\n"
-                                                                                            "/t/t1 Profile Position Mode (PPM) -not implemented \n"
-                                                                                            "/t/t3 Profile Velocity Mode (PVM) -not implemented \n"
-                                                                                            "/t/t6 Homing Mode (HMM) -not implemented n"
-                                                                                            "/t/t8 Cyclic Synchronous Position Mode (CSP)\n"
-                                                                                            "/t/t9 Cyclic Synchronous Velocity Mode (CSV)\n"
-                                                                                            "/t/t10 Cyclic Synchronous Torque Mode (CST)");
+			"change operational mode, returns true on success").arg("desired mode of operation"," values\n"
+																								"/t/t1 Profile Position Mode (PPM) -not implemented \n"
+	        		                                                                                                        "/t/t3 Profile Velocity Mode (PVM) -not implemented \n"
+	                                                                                            "/t/t6 Homing Mode (HMM) -not implemented n"
+	                                                                                            "/t/t8 Cyclic Synchronous Position Mode (CSP)\n"
+	                                                                                            "/t/t9 Cyclic Synchronous Velocity Mode (CSV)\n"
+	                                                                                            "/t/t10 Cyclic Synchronous Torque Mode (CST)");
+  m_service->addOperation("velocity_ramp", &SoemMaxPos::velocity_ramp, this, RTT::OwnThread);
   status_word_msg.data="NOT_READY_TO_SWITCH_ON"; //set longest string
   status_word_outport.setDataSample(status_word_msg);
+}
+
+bool SoemMaxPos::_set_mode_of_operation(int mode)
+{
+	  int8 value=mode;
+	  int8 new_value=0;
+	  int n_of_bytes=sizeof(new_value);
+	  int retval;
+
+	  retval = ec_SDOwrite(m_slave_nr, 0x6060, 0x00, FALSE, sizeof(value), &value, EC_TIMEOUTSAFE);
+	  retval = ec_SDOread(m_slave_nr,  0x6061, 0x00, FALSE, &n_of_bytes , &new_value, EC_TIMEOUTSAFE);
+
+	  if (value!=new_value){
+	      Logger::In in(this->getName());
+	      log(Error)<< m_datap->name<<" : not able to set requested mode of operation.\n" << endlog();
+	      return false;
+	    }
+	  current_mode_of_operation=value;
+	  return true;
 }
 
 bool SoemMaxPos::set_mode_of_operation(int mode)
 {
   if (mode!=8 && mode!=9 && mode!=10){
       Logger::In in(this->getName());
-      log(Error)<< m_datap->name<<" : requested mode is not implemented, only 8,9,10 currently implemented." << endlog();
-    }
-  int8 value=mode;
-  int8 new_value=0;
-  int n_of_bytes=sizeof(new_value);
-  int retval;
-
-  retval = ec_SDOwrite(m_slave_nr, 0x6060, 0x00, FALSE, sizeof(value), &value, EC_TIMEOUTSAFE);
-  retval = ec_SDOread(m_slave_nr,  0x6061, 0x00, FALSE, &n_of_bytes , &new_value, EC_TIMEOUTSAFE);
-
-  if (value!=new_value){
-      Logger::In in(this->getName());
-      log(Error)<< m_datap->name<<" : not able to set requested mode of operation.\n" << endlog();
+      log(Error)<< m_datap->name<<" : requested mode is not implemented,"
+    		  " only 8,9,10 currently implemented." << endlog();
       return false;
     }
-  return true;
-
+ return _set_mode_of_operation(mode);
 }
 
 bool SoemMaxPos::configure()
@@ -204,8 +233,9 @@ bool SoemMaxPos::configure()
 }
 bool SoemMaxPos::start(){
   ((control_msg*) (m_datap->outputs))->target_position=(int32) 0;
-  ((control_msg*) (m_datap->outputs))->target_velocity=(int32) 0;
-  ((control_msg*) (m_datap->outputs))->target_torque=(int16) 0;
+  ((control_msg*) (m_datap->outputs))->position_offset=(int32) 0;
+  ((control_msg*) (m_datap->outputs))->velocity_offset=(int32) 0;
+  ((control_msg*) (m_datap->outputs))->torque_offset=(int16) 0;
   return true;
 }
 
@@ -214,6 +244,7 @@ void SoemMaxPos::update()
 {
   std_msgs::UInt32 digital_inputs;
   std_msgs::UInt16 touch_probe_status;
+  std_msgs::UInt8 modes_of_operation_display;
 
   double pos_coversion_factor=((2*M_PI)/encoder_thick_per_revolution)/gear_ratio; //thick->radiants/sec (or other depending by the unit of the gear ratio)
   double vel_coversion_factor=((2*M_PI)/60.0)/gear_ratio;
@@ -221,7 +252,6 @@ void SoemMaxPos::update()
   // ****************************
   // *** Read data from slave ***
   // ****************************
-
 
   double position= (double)((read_mgs*) (m_datap->inputs))->position_actual_value;//rev
   double velocity= (double)((read_mgs*) (m_datap->inputs))->velocity_actual_value;//rpm
@@ -236,9 +266,11 @@ void SoemMaxPos::update()
   touch_probe_status.data= ((read_mgs*) (m_datap->inputs))->touch_probe_status;
   digital_inputs.data= ((read_mgs*) (m_datap->inputs))->digital_inputs;
 
+  modes_of_operation_display.data =((read_mgs*) (m_datap->inputs))->modes_of_operation_display;
+
   //TODO check for error in the status word
 
-  //writes on port only if new values are recieved
+  //writes on port only if new values are received
 
   if  (status_word!=last_status_word){//change of state
       //check least significative 8 bit
@@ -275,12 +307,16 @@ void SoemMaxPos::update()
   position_outport.write(position);
   velocity_outport.write(velocity);
   torque_outport.write(torque);
+  modes_of_operation_display_outport.write(modes_of_operation_display);
   if (downsample!=0){
       if(iteration>=downsample-1){
           std_msgs::Float32 d;
-          d.data=position;position_outport_ds.write(d);
-          d.data=velocity;velocity_outport_ds.write(d);
-          d.data=torque;torque_outport_ds.write(d);
+          d.data=position;
+          position_outport_ds.write(d);
+          d.data=velocity;
+          velocity_outport_ds.write(d);
+          d.data=torque;
+          torque_outport_ds.write(d);
           iteration=0;
         }
       else iteration++;
@@ -297,14 +333,29 @@ void SoemMaxPos::update()
       ((control_msg*) (m_datap->outputs))->target_position = (int32)(data/pos_coversion_factor);
     }
   if (target_velocity_inport.read(data)!=RTT::NoData){
-      ((control_msg*) (m_datap->outputs))->target_velocity = (int32)(data/vel_coversion_factor);
+
+	  // ((control_msg*) (m_datap->outputs))->velocity_offset = (int32)(data/vel_coversion_factor);
+
+	  int retval ;
+	  int vel=(int32)(data/vel_coversion_factor);
+	  //retval= ec_SDOwrite(m_slave_nr, 0x60FF, 0x00, FALSE, sizeof(vel), &vel, EC_TIMEOUTSAFE);
+	  /*std::cout<<"retval: "<<retval<<std::endl;
+	  int demanded_vel;
+      int n_of_bytes=sizeof(demanded_vel);
+      demanded_vel=-1;
+      retval = ec_SDOread(m_slave_nr,  0x606B, 0x00, FALSE, &n_of_bytes , &demanded_vel, EC_TIMEOUTSAFE);
+      std::cout<<"demanded vel: "<<demanded_vel<<std::endl;
+      uint max_speed=-1; n_of_bytes=sizeof(max_speed);
+      retval = ec_SDOread(m_slave_nr,  0x6080, 0x00, FALSE, &n_of_bytes , &max_speed, EC_TIMEOUTSAFE);
+            std::cout<<"max_speed: "<<max_speed<<std::endl;*/
+
     }
   if (target_torque_inport.read(data)!=RTT::NoData){
-      ((control_msg*) (m_datap->outputs))->target_torque = (int16)(data/tau_coversion_factor);
+      ((control_msg*) (m_datap->outputs))->torque_offset = (int16)(data/tau_coversion_factor);
     }
   //control word is set via operation
   ((control_msg*) (m_datap->outputs))->control_word = (unsigned short)new_control_word.to_ulong();
-
+  ((control_msg*) (m_datap->outputs))->modes_of_operation = current_mode_of_operation;
 
 }
 

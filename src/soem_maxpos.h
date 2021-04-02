@@ -35,6 +35,7 @@
 #include <std_msgs/UInt8.h>
 #include <std_msgs/UInt16.h>
 #include <std_msgs/UInt32.h>
+#include <std_msgs/Int32.h>
 /*
   [0x0000.0] 0x6040:0x00 0x10 UNSIGNED16   Controlword
   [0x0002.0] 0x607A:0x00 0x20 INTEGER32    Target Position
@@ -51,7 +52,26 @@
   [0x0020.0] 0x6077:0x00 0x10 INTEGER16    Torque Actual Value
   [0x0022.0] 0x60FD:0x00 0x20 UNSIGNED32   Digital Inputs
   [0x0026.0] 0x60B9:0x00 0x10 UNSIGNED16   Touch Probe Status
-
+NEW
+  [0x0000.0] 0x6040:0x00 0x10 UNSIGNED16   Controlword
+  [0x0002.0] 0x607A:0x00 0x20 INTEGER32    Target Position
+  [0x0006.0] 0x60B0:0x00 0x20 INTEGER32    Position Offset
+  [0x000A.0] 0x60B1:0x00 0x20 INTEGER32    Velocity Offset
+  [0x000E.0] 0x60B2:0x00 0x10 INTEGER16    Torque Offset
+  [0x0010.0] 0x6060:0x00 0x08 INTEGER8     Modes Of Operation
+  [0x0011.0] 0x60FE:0x01 0x20 UNSIGNED32   Physical Outputs
+  [0x0015.0] 0x60B8:0x00 0x10 UNSIGNED16   Touch Probe Function
+  SM3 inputs
+     addr b   index: sub bitl data_type    name
+  [0x0017.0] 0x6041:0x00 0x10 UNSIGNED16   Statusword
+  [0x0019.0] 0x6064:0x00 0x20 INTEGER32    Position Actual Value
+  [0x001D.0] 0x606C:0x00 0x20 INTEGER32    Velocity Actual Value
+  [0x0021.0] 0x6077:0x00 0x10 INTEGER16    Torque Actual Value
+  [0x0023.0] 0x6061:0x00 0x08 INTEGER8     Modes Of Operation Display
+  [0x0024.0] 0x60FD:0x00 0x20 UNSIGNED32   Digital Inputs
+  [0x0028.0] 0x60B9:0x00 0x10 UNSIGNED16   Touch Probe Status
+  [0x002A.0] 0x60BA:0x00 0x20 INTEGER32    Touch Probe Position 1 Positive Value
+  [0x002E.0] 0x60BB:0x00 0x20 INTEGER32    Touch Probe Position 1 Negative Value
 */
 //modes_of_operation
 #define MODE_OP_PROFILE_POS 1
@@ -92,23 +112,27 @@ class SoemMaxPos : public soem_master::SoemDriver
 
   typedef struct PACKED
   {
-    uint16 control_word;
-    int32 target_position;
-    int32 target_velocity;
-    int16 target_torque;
-    uint32 physical_outputs;
-    uint16 touch_probe_function;
-    int32 velocity_offset;
+    uint16 	control_word;
+    int32 	target_position;
+    int32 	position_offset;
+    int32 	velocity_offset;
+    int16 	torque_offset;
+    int8	modes_of_operation;
+    uint32 	physical_outputs;
+    uint16 	touch_probe_function;
   } control_msg;
 
   typedef struct PACKED
   {
-    uint16 status_word;
-    int32  position_actual_value;
-    int32  velocity_actual_value;
-    int16  torque_actual_value;
+    uint16	status_word;
+    int32	position_actual_value;
+    int32	velocity_actual_value;
+    int16	torque_actual_value;
+    int8	modes_of_operation_display;
     uint32  digital_inputs;
-    uint16 touch_probe_status;
+    uint16 	touch_probe_status;
+    int32  	touch_probe_position_1_positive_value;
+    int32  	touch_probe_position_1_negative_value;
   } read_mgs;
 
 public:
@@ -118,7 +142,8 @@ public:
   bool configure();
   bool start();
   void update();
-  //functioons to set the command word, needed to escale the state machine and ring the module in working state
+  //functions to set the command word, needed to escalate the state machine
+  //and bring the module in working state
   void cw_reset();
   void cw_switch_on();
   void cw_switch_on_and_enable_operation();
@@ -128,8 +153,13 @@ public:
   void cw_enable_operation();
   void cw_fault_reset();
 
+  bool velocity_ramp(double velocity,double accelleration);
   bool set_mode_of_operation(int mode);
+
+  bool _set_mode_of_operation(int mode);
 private:
+
+
   //RTT::OutputPort<std::vector<double> > position_outport;
   int ros_downsample;
   RTT::OutputPort<std_msgs::String > status_word_outport;
@@ -140,8 +170,12 @@ private:
   RTT::OutputPort<double > velocity_outport;
   RTT::OutputPort<std_msgs::Float32 > torque_outport_ds;
   RTT::OutputPort<double > torque_outport;
+  RTT::OutputPort<std_msgs::UInt8 > modes_of_operation_display_outport;
   RTT::OutputPort<std_msgs::UInt32 > digital_inputs_outport;
   RTT::OutputPort<std_msgs::UInt16 > touch_probe_status_outport;
+  RTT::OutputPort<std_msgs::Int32 > touch_probe_position_1_positive_value_outport;
+  RTT::OutputPort<std_msgs::Int32 > touch_probe_position_1_negative_value_outport;
+
 
   RTT::InputPort<double> target_position_inport;
   RTT::InputPort<double> target_velocity_inport;
@@ -164,10 +198,13 @@ private:
 
   double encoder_thick_per_revolution;
   double gear_ratio;
+
+
   //constant attributes
   double motor_rated_torque;// constant to convert percent to  Nm
 
   int downsample;
+  int8 current_mode_of_operation;
 
 };
 
