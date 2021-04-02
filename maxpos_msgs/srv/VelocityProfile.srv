@@ -1,0 +1,4 @@
+float64 TargetRPM
+float64 Accelleration
+---
+bool Ok

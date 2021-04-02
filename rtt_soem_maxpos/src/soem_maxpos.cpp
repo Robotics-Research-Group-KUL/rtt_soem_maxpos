@@ -26,6 +26,8 @@
 #include "soem_maxpos.h"
 #include <soem_master/soem_driver_factory.h>
 
+
+
 #include "math.h"
 
 using namespace RTT;
@@ -86,6 +88,11 @@ void SoemMaxPos::cw_enable_operation(){// 0xxx 1111
 }
 void SoemMaxPos::cw_fault_reset(){// 1xxx xxxx (should be 0xxx xxxx before)
 	new_control_word.set(7);
+}
+bool SoemMaxPos::velocity_ramp_service(maxpos_msgs::VelocityProfile::Request& request,
+		  maxpos_msgs::VelocityProfile::Response response){
+	response.Ok=velocity_ramp(request.TargetRPM,request.Accelleration);
+	return true;
 }
 bool  SoemMaxPos::velocity_ramp(double velocity,double accelleration){
 	if(false==_set_mode_of_operation(3)) {
@@ -177,6 +184,7 @@ SoemMaxPos::SoemMaxPos(ec_slavet* mem_loc) :
 			.arg("velocity", "target velocity in RPM")
 			.arg("accelleration", "accelleration and de-accelleration in the veloicty profile (try 500),"
 					" min value 1, max value TBD");
+	m_service->addOperation("velocity_ramp_service", &SoemMaxPos::velocity_ramp_service, this, RTT::ClientThread);
 
 	status_word_msg.data="NOT_READY_TO_SWITCH_ON"; //set longest string
 	status_word_outport.setDataSample(status_word_msg);

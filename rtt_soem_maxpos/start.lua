@@ -24,6 +24,7 @@ ros:import("rtt_roscomm")
 ros:import("rtt_std_msgs")
 ros:import("rtt_rospack")
 
+
 ros:import("soem_master")
 ros:import("rtt_soem_maxpos")
 
@@ -73,6 +74,14 @@ depl:stream("Master.Slave_1001.status_8MSB",
         rtt.provides("ros"):topic("/status_8MSB"))
 depl:stream("Master.Slave_1001.modes_of_operation_display",
         rtt.provides("ros"):topic("/modes_of_operation_display"))
+
+depl:loadService("Master","rosservice") 
+Master:provides("rosservice")
+connect=rs:getOperation("connect")
+       
+connect("Master.Slave_1001.velocity_ramp_service", "/VelocityRamp", 
+  "maxpos_msgs/VelocityProfile")
+        
 
 target_position = rttlib.port_clone_conn(s:getPort("target_position"))
 target_velocity = rttlib.port_clone_conn(s:getPort("target_velocity"))

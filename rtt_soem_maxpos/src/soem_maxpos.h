@@ -36,23 +36,8 @@
 #include <std_msgs/UInt16.h>
 #include <std_msgs/UInt32.h>
 #include <std_msgs/Int32.h>
+#include <maxpos_msgs/VelocityProfile.h>
 /*
-  [0x0000.0] 0x6040:0x00 0x10 UNSIGNED16   Controlword
-  [0x0002.0] 0x607A:0x00 0x20 INTEGER32    Target Position
-  [0x0006.0] 0x60FF:0x00 0x20 INTEGER32    Target Velocity
-  [0x000A.0] 0x6071:0x00 0x10 INTEGER16    Target Torque
-  [0x000C.0] 0x60FE:0x01 0x20 UNSIGNED32   Physical Outputs
-  [0x0010.0] 0x60B8:0x00 0x10 UNSIGNED16   Touch Probe Function
-  [0x0012.0] 0x60B1:0x00 0x20 INTEGER32    Velocity Offset
-  SM3 inputs
-     addr b   index: sub bitl data_type    name
-  [0x0016.0] 0x6041:0x00 0x10 UNSIGNED16   Statusword
-  [0x0018.0] 0x6064:0x00 0x20 INTEGER32    Position Actual Value
-  [0x001C.0] 0x606C:0x00 0x20 INTEGER32    Velocity Actual Value
-  [0x0020.0] 0x6077:0x00 0x10 INTEGER16    Torque Actual Value
-  [0x0022.0] 0x60FD:0x00 0x20 UNSIGNED32   Digital Inputs
-  [0x0026.0] 0x60B9:0x00 0x10 UNSIGNED16   Touch Probe Status
-NEW
   [0x0000.0] 0x6040:0x00 0x10 UNSIGNED16   Controlword
   [0x0002.0] 0x607A:0x00 0x20 INTEGER32    Target Position
   [0x0006.0] 0x60B0:0x00 0x20 INTEGER32    Position Offset
@@ -154,6 +139,8 @@ public:
   void cw_fault_reset();
 
   bool velocity_ramp(double velocity,double accelleration);
+  bool velocity_ramp_service(maxpos_msgs::VelocityProfile::Request& request,
+		  maxpos_msgs::VelocityProfile::Response response);
   bool set_mode_of_operation(int mode);
 
   bool _set_mode_of_operation(int mode);

@@ -1,0 +1,1023 @@
+sudo ./slaveinfo enxe4b97ab11172 -sdo
+SOEM (Simple Open EtherCAT Master)
+Slaveinfo
+Starting slaveinfo
+ec_init on enxe4b97ab11172 succeeded.
+1 slaves found and configured.
+Calculated workcounter 3
+
+Slave:1
+ Name:MAXPOS
+ Output size: 184bits
+ Input size: 216bits
+ State: 4
+ Delay: 0[ns]
+ Has DC: 1
+ DCParentport:0
+ Activeports:1.0.0.0
+ Configured address: 1001
+ Man: 000000fb ID: 30010000 Rev: 01210000
+ SM0 A:1000 L:1024 F:00010026 Type:1
+ SM1 A:1400 L:1024 F:00010022 Type:2
+ SM2 A:1800 L:  23 F:00010064 Type:3
+ SM3 A:1c00 L:  27 F:00010020 Type:4
+ FMMU0 Ls:00000000 Ll:  23 Lsb:0 Leb:7 Ps:1800 Psb:0 Ty:02 Act:01
+ FMMU1 Ls:00000017 Ll:  27 Lsb:0 Leb:7 Ps:1c00 Psb:0 Ty:01 Act:01
+ FMMUfunc 0:1 1:2 2:3 3:0
+ MBX length wr: 1024 rd: 1024 MBX protocols : 0c
+ CoE details: 2f FoE details: 01 EoE details: 00 SoE details: 00
+ Ebus current: 0[mA]
+ only LRD/LWR:0
+ CoE Object Description found, 130 entries.
+ Index: 1000 Datatype: 0007 Objectcode: 07 Name: Device Type
+  Sub: 00 Datatype: 0007 Bitlength: 0020 Obj.access: 0007 Name: Device Type
+          Value :0x00020192 131474
+ Index: 1001 Datatype: 0005 Objectcode: 07 Name: Error Register
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Error Register
+          Value :0x10 16
+ Index: 1008 Datatype: 0009 Objectcode: 07 Name: Manufacturer Device Name
+  Sub: 00 Datatype: 0009 Bitlength: 0030 Obj.access: 0007 Name: Manufacturer Device Name
+          Value :MAXPOS
+ Index: 1018 Datatype: 0005 Objectcode: 09 Name: Identity Object
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Identity Object
+          Value :0x04 4
+  Sub: 01 Datatype: 0007 Bitlength: 0020 Obj.access: 0007 Name: Vendor Id
+          Value :0x000000fb 251
+  Sub: 02 Datatype: 0007 Bitlength: 0020 Obj.access: 0007 Name: Product Code
+          Value :0x30010000 805371904
+  Sub: 03 Datatype: 0007 Bitlength: 0020 Obj.access: 0007 Name: Revision Number
+          Value :0x01210000 18939904
+  Sub: 04 Datatype: 0007 Bitlength: 0020 Obj.access: 0007 Name: Serial Number
+          Value :0x12001574 301995380
+ Index: 10f3 Datatype: 0005 Objectcode: 09 Name: Diagnosis History
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Diagnosis History
+          Value :0x06 6
+  Sub: 01 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Maximum Messages
+          Value :0x0a 10
+  Sub: 02 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Newest Message
+          Value :0x06 6
+  Sub: 03 Datatype: 0005 Bitlength: 0008 Obj.access: 003f Name: Newest Acknowledged Message
+          Value :0x00 0
+  Sub: 04 Datatype: 0001 Bitlength: 0001 Obj.access: 0087 Name: New Messages Available
+          Value :TRUE
+  Sub: 05 Datatype: 0006 Bitlength: 0010 Obj.access: 003f Name: Flags
+          Value :0x0000 0
+  Sub: 06 Datatype: 000a Bitlength: 0080 Obj.access: 0007 Name: Diagnosis Message [0]
+          Value :0x00 0xffffffe0 0xffffff80 0xffffff81 0x02 0x00 0x15 0x10 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 
+  Sub: 07 Datatype: 000a Bitlength: 0080 Obj.access: 0007 Name: Diagnosis Message [1]
+          Value :0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 
+  Sub: 08 Datatype: 000a Bitlength: 0080 Obj.access: 0007 Name: Diagnosis Message [2]
+          Value :0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 
+  Sub: 09 Datatype: 000a Bitlength: 0080 Obj.access: 0007 Name: Diagnosis Message [3]
+          Value :0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 
+  Sub: 0a Datatype: 000a Bitlength: 0080 Obj.access: 0007 Name: Diagnosis Message [4]
+          Value :0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 
+  Sub: 0b Datatype: 000a Bitlength: 0080 Obj.access: 0007 Name: Diagnosis Message [5]
+          Value :0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 
+  Sub: 0c Datatype: 000a Bitlength: 0080 Obj.access: 0007 Name: Diagnosis Message [6]
+          Value :0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 
+  Sub: 0d Datatype: 000a Bitlength: 0080 Obj.access: 0007 Name: Diagnosis Message [7]
+          Value :0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 
+  Sub: 0e Datatype: 000a Bitlength: 0080 Obj.access: 0007 Name: Diagnosis Message [8]
+          Value :0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 
+  Sub: 0f Datatype: 000a Bitlength: 0080 Obj.access: 0007 Name: Diagnosis Message [9]
+          Value :0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 
+ Index: 1600 Datatype: 0005 Objectcode: 09 Name: Receive PDO 1 Mapping
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 010f Name: Receive PDO 1 Mapping
+          Value :0x08 8
+  Sub: 01 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 1st Mapped Object in RxPDO 1
+          Value :0x60400010 1614807056
+  Sub: 02 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 2nd Mapped Object in RxPDO 1
+          Value :0x607a0020 1618608160
+  Sub: 03 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 3rd Mapped Object in RxPDO 1
+          Value :0x60b00020 1622147104
+  Sub: 04 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 4th Mapped Object in RxPDO 1
+          Value :0x60b10020 1622212640
+  Sub: 05 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 5th Mapped Object in RxPDO 1
+          Value :0x60b20010 1622278160
+  Sub: 06 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 6th Mapped Object in RxPDO 1
+          Value :0x60600008 1616904200
+  Sub: 07 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 7th Mapped Object in RxPDO 1
+          Value :0x60fe0120 1627259168
+  Sub: 08 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 8th Mapped Object in RxPDO 1
+          Value :0x60b80010 1622671376
+ Index: 1601 Datatype: 0005 Objectcode: 09 Name: Receive PDO 2 Mapping
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 010f Name: Receive PDO 2 Mapping
+          Value :0x07 7
+  Sub: 01 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 1st Mapped Object in RxPDO 2
+          Value :0x60400010 1614807056
+  Sub: 02 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 2nd Mapped Object in RxPDO 2
+          Value :0x60ff0020 1627324448
+  Sub: 03 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 3rd Mapped Object in RxPDO 2
+          Value :0x60b10020 1622212640
+  Sub: 04 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 4th Mapped Object in RxPDO 2
+          Value :0x60b20010 1622278160
+  Sub: 05 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 5th Mapped Object in RxPDO 2
+          Value :0x60600008 1616904200
+  Sub: 06 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 6th Mapped Object in RxPDO 2
+          Value :0x60fe0120 1627259168
+  Sub: 07 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 7th Mapped Object in RxPDO 2
+          Value :0x60b80010 1622671376
+ Index: 1602 Datatype: 0005 Objectcode: 09 Name: Receive PDO 3 Mapping
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 010f Name: Receive PDO 3 Mapping
+          Value :0x06 6
+  Sub: 01 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 1st Mapped Object in RxPDO 3
+          Value :0x60400010 1614807056
+  Sub: 02 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 2nd Mapped Object in RxPDO 3
+          Value :0x60710010 1618018320
+  Sub: 03 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 3rd Mapped Object in RxPDO 3
+          Value :0x60b20010 1622278160
+  Sub: 04 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 4th Mapped Object in RxPDO 3
+          Value :0x60600008 1616904200
+  Sub: 05 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 5th Mapped Object in RxPDO 3
+          Value :0x60fe0120 1627259168
+  Sub: 06 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 6th Mapped Object in RxPDO 3
+          Value :0x60b80010 1622671376
+ Index: 1603 Datatype: 0005 Objectcode: 09 Name: Receive PDO 4 Mapping
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 010f Name: Receive PDO 4 Mapping
+          Value :0x08 8
+  Sub: 01 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 1st Mapped Object in RxPDO 4
+          Value :0x60400010 1614807056
+  Sub: 02 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 2nd Mapped Object in RxPDO 4
+          Value :0x607a0020 1618608160
+  Sub: 03 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 3rd Mapped Object in RxPDO 4
+          Value :0x60ff0020 1627324448
+  Sub: 04 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 4th Mapped Object in RxPDO 4
+          Value :0x60830020 1619197984
+  Sub: 05 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 5th Mapped Object in RxPDO 4
+          Value :0x60840020 1619263520
+  Sub: 06 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 6th Mapped Object in RxPDO 4
+          Value :0x60810020 1619066912
+  Sub: 07 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 7th Mapped Object in RxPDO 4
+          Value :0x60600008 1616904200
+  Sub: 08 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 8th Mapped Object in RxPDO 4
+          Value :0x60fe0120 1627259168
+ Index: 1a00 Datatype: 0005 Objectcode: 09 Name: Transmit PDO 1 Mapping
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 010f Name: Transmit PDO 1 Mapping
+          Value :0x09 9
+  Sub: 01 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 1st Mapped Object in TxPDO 1
+          Value :0x60410010 1614872592
+  Sub: 02 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 2nd Mapped Object in TxPDO 1
+          Value :0x60640020 1617166368
+  Sub: 03 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 3rd Mapped Object in TxPDO 1
+          Value :0x606c0020 1617690656
+  Sub: 04 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 4th Mapped Object in TxPDO 1
+          Value :0x60770010 1618411536
+  Sub: 05 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 5th Mapped Object in TxPDO 1
+          Value :0x60610008 1616969736
+  Sub: 06 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 6th Mapped Object in TxPDO 1
+          Value :0x60fd0020 1627193376
+  Sub: 07 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 7th Mapped Object in TxPDO 1
+          Value :0x60b90010 1622736912
+  Sub: 08 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 8th Mapped Object in TxPDO 1
+          Value :0x60ba0020 1622802464
+  Sub: 09 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 9th Mapped Object in TxPDO 1
+          Value :0x60bb0020 1622868000
+ Index: 1a01 Datatype: 0005 Objectcode: 09 Name: Transmit PDO 2 Mapping
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 010f Name: Transmit PDO 2 Mapping
+          Value :0x09 9
+  Sub: 01 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 1st Mapped Object in TxPDO 2
+          Value :0x60410010 1614872592
+  Sub: 02 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 2nd Mapped Object in TxPDO 2
+          Value :0x60640020 1617166368
+  Sub: 03 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 3rd Mapped Object in TxPDO 2
+          Value :0x606c0020 1617690656
+  Sub: 04 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 4th Mapped Object in TxPDO 2
+          Value :0x60770010 1618411536
+  Sub: 05 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 5th Mapped Object in TxPDO 2
+          Value :0x60610008 1616969736
+  Sub: 06 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 6th Mapped Object in TxPDO 2
+          Value :0x60fd0020 1627193376
+  Sub: 07 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 7th Mapped Object in TxPDO 2
+          Value :0x60b90010 1622736912
+  Sub: 08 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 8th Mapped Object in TxPDO 2
+          Value :0x60ba0020 1622802464
+  Sub: 09 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 9th Mapped Object in TxPDO 2
+          Value :0x60bb0020 1622868000
+ Index: 1a02 Datatype: 0005 Objectcode: 09 Name: Transmit PDO 3 Mapping
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 010f Name: Transmit PDO 3 Mapping
+          Value :0x09 9
+  Sub: 01 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 1st Mapped Object in TxPDO 3
+          Value :0x60410010 1614872592
+  Sub: 02 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 2nd Mapped Object in TxPDO 3
+          Value :0x60640020 1617166368
+  Sub: 03 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 3rd Mapped Object in TxPDO 3
+          Value :0x606c0020 1617690656
+  Sub: 04 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 4th Mapped Object in TxPDO 3
+          Value :0x60770010 1618411536
+  Sub: 05 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 5th Mapped Object in TxPDO 3
+          Value :0x60610008 1616969736
+  Sub: 06 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 6th Mapped Object in TxPDO 3
+          Value :0x60fd0020 1627193376
+  Sub: 07 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 7th Mapped Object in TxPDO 3
+          Value :0x60b90010 1622736912
+  Sub: 08 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 8th Mapped Object in TxPDO 3
+          Value :0x60ba0020 1622802464
+  Sub: 09 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 9th Mapped Object in TxPDO 3
+          Value :0x60bb0020 1622868000
+ Index: 1a03 Datatype: 0005 Objectcode: 09 Name: Transmit PDO 4 Mapping
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 010f Name: Transmit PDO 4 Mapping
+          Value :0x07 7
+  Sub: 01 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 1st Mapped Object in TxPDO 4
+          Value :0x60410010 1614872592
+  Sub: 02 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 2nd Mapped Object in TxPDO 4
+          Value :0x60640020 1617166368
+  Sub: 03 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 3rd Mapped Object in TxPDO 4
+          Value :0x606c0020 1617690656
+  Sub: 04 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 4th Mapped Object in TxPDO 4
+          Value :0x60780010 1618477072
+  Sub: 05 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 5th Mapped Object in TxPDO 4
+          Value :0x60f40020 1626603552
+  Sub: 06 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 6th Mapped Object in TxPDO 4
+          Value :0x60610008 1616969736
+  Sub: 07 Datatype: 0007 Bitlength: 0020 Obj.access: 010f Name: 7th Mapped Object in TxPDO 4
+          Value :0x60fd0020 1627193376
+ Index: 1c00 Datatype: 0005 Objectcode: 09 Name: Sync Manager Communication Type
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Sync Manager Communication Type
+          Value :0x04 4
+  Sub: 01 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Communication Type Sync Channel 0
+          Value :0x01 1
+  Sub: 02 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Communication Type Sync Channel 1
+          Value :0x02 2
+  Sub: 03 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Communication Type Sync Channel 2
+          Value :0x03 3
+  Sub: 04 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Communication Type Sync Channel 3
+          Value :0x04 4
+ Index: 1c12 Datatype: 0005 Objectcode: 09 Name: Sync Manager 2 PDO Assignment
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 010f Name: Sync Manager 2 PDO Assignment
+          Value :0x01 1
+  Sub: 01 Datatype: 0006 Bitlength: 0010 Obj.access: 010f Name: 1st assigned RxPDO
+          Value :0x1600 5632
+ Index: 1c13 Datatype: 0005 Objectcode: 09 Name: Sync Manager 3 PDO Assignment
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 010f Name: Sync Manager 3 PDO Assignment
+          Value :0x01 1
+  Sub: 01 Datatype: 0006 Bitlength: 0010 Obj.access: 010f Name: 1st assigned TxPDO
+          Value :0x1a00 6656
+ Index: 1c32 Datatype: 0005 Objectcode: 09 Name: SM2 Output Parameter
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: SM2 Output Parameter
+          Value :0x05 5
+  Sub: 01 Datatype: 0006 Bitlength: 0010 Obj.access: 0007 Name: Sync Mode
+          Value :0x0001 1
+  Sub: 02 Datatype: 0007 Bitlength: 0020 Obj.access: 0007 Name: Cycle Time
+          Value :0x007942f8 7947000
+  Sub: 03 Datatype: 0007 Bitlength: 0020 Obj.access: 0007 Name: Shift Time
+          Value :0x00000000 0
+  Sub: 04 Datatype: 0006 Bitlength: 0010 Obj.access: 0007 Name: Sync Modes Supported
+          Value :0x0006 6
+  Sub: 05 Datatype: 0007 Bitlength: 0020 Obj.access: 0007 Name: Min Cycle Time
+          Value :0x000186a0 100000
+ Index: 1c33 Datatype: 0005 Objectcode: 09 Name: SM3 Input Parameter
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: SM3 Input Parameter
+          Value :0x05 5
+  Sub: 01 Datatype: 0006 Bitlength: 0010 Obj.access: 0007 Name: Sync Mode
+          Value :0x0022 34
+  Sub: 02 Datatype: 0007 Bitlength: 0020 Obj.access: 0007 Name: Cycle Time
+          Value :0x007942f8 7947000
+  Sub: 03 Datatype: 0007 Bitlength: 0020 Obj.access: 0007 Name: Shift Time
+          Value :0x0000c350 50000
+  Sub: 04 Datatype: 0006 Bitlength: 0010 Obj.access: 0007 Name: Sync Modes Supported
+          Value :0x0006 6
+  Sub: 05 Datatype: 0007 Bitlength: 0020 Obj.access: 0007 Name: Min Cycle Time
+          Value :0x000186a0 100000
+ Index: 2010 Datatype: 0005 Objectcode: 07 Name: Internal EtherCAT State
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Internal EtherCAT State
+          Value :0x04 4
+ Index: 2100 Datatype: 001b Objectcode: 07 Name: Serial Number Complete
+  Sub: 00 Datatype: 001b Bitlength: 0040 Obj.access: 0007 Name: Serial Number Complete
+          Value :0x0000602112001574 105695152182644
+ Index: 2110 Datatype: 0005 Objectcode: 09 Name: Store Parameters
+Time:   17788.438 PACKET slave:1 index:2110.03 error:1
+Time:   17788.438 PACKET slave:1 index:2110.04 error:1
+Time:   17788.439 PACKET slave:1 index:2110.05 error:1
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Store Parameters
+          Value :0x06 6
+  Sub: 01 Datatype: 0007 Bitlength: 0020 Obj.access: 003f Name: Store All Parameters
+          Value :0x00000000 0
+  Sub: 02 Datatype: 0007 Bitlength: 0020 Obj.access: 003f Name: Store Communication Parameters
+          Value :0x00000000 0
+  Sub: 06 Datatype: 0007 Bitlength: 0020 Obj.access: 003f Name: Store Axis Parameters
+          Value :0x00000000 0
+ Index: 2111 Datatype: 0005 Objectcode: 09 Name: Restore Default Parameters
+Time:   17788.446 PACKET slave:1 index:2111.03 error:1
+Time:   17788.447 PACKET slave:1 index:2111.04 error:1
+Time:   17788.447 PACKET slave:1 index:2111.05 error:1
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Restore Default Parameters
+          Value :0x06 6
+  Sub: 01 Datatype: 0007 Bitlength: 0020 Obj.access: 000f Name: Restore All Default Parameters
+          Value :0x00000000 0
+  Sub: 02 Datatype: 0007 Bitlength: 0020 Obj.access: 000f Name: Restore Communication Default Parameters
+          Value :0x00000000 0
+  Sub: 06 Datatype: 0007 Bitlength: 0020 Obj.access: 000f Name: Restore Axis 1 Default Parameters
+          Value :0x00000000 0
+ Index: 2d00 Datatype: 0005 Objectcode: 09 Name: Internal ADC Values
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Internal ADC Values
+          Value :0x05 5
+  Sub: 01 Datatype: 0003 Bitlength: 0010 Obj.access: 0007 Name: Internal ADC Encoder Sin Data
+          Value :0x000c 12
+  Sub: 02 Datatype: 0003 Bitlength: 0010 Obj.access: 0007 Name: Internal ADC Encoder Cos Data
+          Value :0x000b 11
+  Sub: 03 Datatype: 0006 Bitlength: 0010 Obj.access: 0007 Name: Internal ADC VM Volt
+          Value :0x1836 6198
+  Sub: 04 Datatype: 0006 Bitlength: 0010 Obj.access: 0007 Name: Internal ADC Temp Baseboard
+          Value :0x0a41 2625
+  Sub: 05 Datatype: 0006 Bitlength: 0010 Obj.access: 0007 Name: Internal ADC Temp Module
+          Value :0x093a 2362
+ Index: 3000 Datatype: 0005 Objectcode: 09 Name: Axis Configuration
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Axis Configuration
+          Value :0x05 5
+  Sub: 01 Datatype: 0007 Bitlength: 0020 Obj.access: 013f Name: Sensors Configuration
+          Value :0x00000001 1
+  Sub: 02 Datatype: 0007 Bitlength: 0020 Obj.access: 013f Name: Control Structure
+          Value :0x00000011 17
+  Sub: 03 Datatype: 0007 Bitlength: 0020 Obj.access: 013f Name: Commutation Sensors
+          Value :0x00000000 0
+  Sub: 04 Datatype: 0007 Bitlength: 0020 Obj.access: 013f Name: Axis Configuration Miscellaneous
+          Value :0x00000000 0
+  Sub: 05 Datatype: 0007 Bitlength: 0020 Obj.access: 0007 Name: Main Sensor Resolution
+          Value :0x00001000 4096
+ Index: 3001 Datatype: 0005 Objectcode: 09 Name: Motor Data
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Motor Data
+          Value :0x05 5
+  Sub: 01 Datatype: 0006 Bitlength: 0010 Obj.access: 013f Name: Nominal Current
+          Value :0x0ac8 2760
+  Sub: 02 Datatype: 0006 Bitlength: 0010 Obj.access: 013f Name: Output Current Limit
+          Value :0x0e74 3700
+  Sub: 03 Datatype: 0005 Bitlength: 0008 Obj.access: 013f Name: Number of Pole Pairs
+          Value :0x01 1
+  Sub: 04 Datatype: 0006 Bitlength: 0010 Obj.access: 013f Name: Thermal Time Constant Winding
+          Value :0x00f1 241
+  Sub: 05 Datatype: 0007 Bitlength: 0020 Obj.access: 013f Name: Torque Constant
+          Value :0x00005398 21400
+ Index: 3010 Datatype: 0005 Objectcode: 09 Name: Digital Incremental Encoder 1
+Time:   17788.479 PACKET slave:1 index:3010.03 error:1
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Digital Incremental Encoder 1
+          Value :0x04 4
+  Sub: 01 Datatype: 0007 Bitlength: 0020 Obj.access: 013f Name: Digital Incremental Encoder 1 Number of 
+          Value :0x00000400 1024
+  Sub: 02 Datatype: 0006 Bitlength: 0010 Obj.access: 013f Name: Digital Incremental Encoder 1 Type
+          Value :0x0001 1
+  Sub: 04 Datatype: 0004 Bitlength: 0020 Obj.access: 0087 Name: Digital Incremental Encoder 1 Index Posi
+          Value :0x0177761e 24606238
+ Index: 3011 Datatype: 0005 Objectcode: 09 Name: Analog Incremental Encoder
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Analog Incremental Encoder
+          Value :0x03 3
+  Sub: 01 Datatype: 0006 Bitlength: 0010 Obj.access: 013f Name: Analog Incremental Encoder Type
+          Value :0x0001 1
+  Sub: 02 Datatype: 0007 Bitlength: 0020 Obj.access: 013f Name: Analog Incremental Encoder Resolution
+          Value :0x00080004 524292
+  Sub: 03 Datatype: 0004 Bitlength: 0020 Obj.access: 0087 Name: Analog Incremental Encoder Index Positio
+          Value :0x00000000 0
+ Index: 3012 Datatype: 0005 Objectcode: 09 Name: SSI Absolute Encoder
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: SSI Absolute Encoder
+          Value :0x08 8
+  Sub: 01 Datatype: 0006 Bitlength: 0010 Obj.access: 013f Name: SSI Data Rate
+          Value :0x01f4 500
+  Sub: 02 Datatype: 0007 Bitlength: 0020 Obj.access: 013f Name: SSI Number of Data Bits
+          Value :0x000c0d00 789760
+  Sub: 03 Datatype: 0006 Bitlength: 0010 Obj.access: 013f Name: SSI Encoding Type
+          Value :0x0000 0
+  Sub: 04 Datatype: 0006 Bitlength: 0010 Obj.access: 013f Name: SSI Transmit Wait Time
+          Value :0x0000 0
+  Sub: 05 Datatype: 0006 Bitlength: 0010 Obj.access: 013f Name: SSI Timeout Time
+          Value :0x012c 300
+  Sub: 06 Datatype: 0006 Bitlength: 0010 Obj.access: 0087 Name: SSI Special Bits
+          Value :0x0000 0
+  Sub: 07 Datatype: 0007 Bitlength: 0020 Obj.access: 0007 Name: SSI Refresh Rate
+          Value :0x00002710 10000
+  Sub: 08 Datatype: 0006 Bitlength: 0010 Obj.access: 013f Name: SSI Power-up Time
+          Value :0x00c8 200
+ Index: 3014 Datatype: 0005 Objectcode: 09 Name: BiSS Absolute Encoder
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: BiSS Absolute Encoder
+          Value :0x0e 14
+  Sub: 01 Datatype: 0005 Bitlength: 0008 Obj.access: 003f Name: BiSS Controlword
+          Value :0x00 0
+  Sub: 02 Datatype: 0006 Bitlength: 0010 Obj.access: 0007 Name: BiSS Statusword
+          Value :0x0000 0
+  Sub: 03 Datatype: 0006 Bitlength: 0010 Obj.access: 013f Name: BiSS Data Rate
+          Value :0x124f 4687
+  Sub: 04 Datatype: 0006 Bitlength: 0010 Obj.access: 013f Name: BiSS Timeout Time
+          Value :0x01f4 500
+  Sub: 05 Datatype: 0006 Bitlength: 0010 Obj.access: 013f Name: BiSS Busy Time
+          Value :0x0000 0
+  Sub: 06 Datatype: 0007 Bitlength: 0020 Obj.access: 013f Name: BiSS Data Bits
+          Value :0x0400000c 67108876
+  Sub: 07 Datatype: 0007 Bitlength: 0020 Obj.access: 013f Name: BiSS Position Bits
+          Value :0x0000000c 12
+  Sub: 08 Datatype: 0006 Bitlength: 0010 Obj.access: 013f Name: BiSS Encoder Type
+          Value :0x0000 0
+  Sub: 09 Datatype: 0007 Bitlength: 0020 Obj.access: 013f Name: BiSS Encoder Protocol
+          Value :0x00430010 4390928
+  Sub: 0a Datatype: 0007 Bitlength: 0020 Obj.access: 0007 Name: BiSS Refresh Rate
+          Value :0x0000c350 50000
+  Sub: 0b Datatype: 0006 Bitlength: 0010 Obj.access: 0007 Name: BiSS Profile ID
+          Value :0x0000 0
+  Sub: 0c Datatype: 0007 Bitlength: 0020 Obj.access: 0007 Name: BiSS Serial Number
+          Value :0x00000000 0
+  Sub: 0d Datatype: 001b Bitlength: 0040 Obj.access: 0007 Name: BiSS Device ID
+          Value :0x0000000000000000 0
+  Sub: 0e Datatype: 0006 Bitlength: 0010 Obj.access: 0007 Name: BiSS Manufacturer ID
+          Value :0x0000 0
+ Index: 301a Datatype: 0005 Objectcode: 09 Name: Digital Hall Sensors
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Digital Hall Sensors
+          Value :0x02 2
+  Sub: 01 Datatype: 0006 Bitlength: 0010 Obj.access: 013f Name: Digital Hall Sensor Type
+          Value :0x0000 0
+  Sub: 02 Datatype: 0006 Bitlength: 0010 Obj.access: 0007 Name: Digital Hall Sensor Pattern
+          Value :0x0000 0
+ Index: 3020 Datatype: 0005 Objectcode: 09 Name: Digital Incremental Encoder 2
+Time:   17788.529 PACKET slave:1 index:3020.03 error:1
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Digital Incremental Encoder 2
+          Value :0x04 4
+  Sub: 01 Datatype: 0007 Bitlength: 0020 Obj.access: 013f Name: Digital Incremental Encoder 2 Number of 
+          Value :0x000001f4 500
+  Sub: 02 Datatype: 0006 Bitlength: 0010 Obj.access: 013f Name: Digital Incremental Encoder 2 Type
+          Value :0x0001 1
+  Sub: 04 Datatype: 0004 Bitlength: 0020 Obj.access: 0087 Name: Digital Incremental Encoder 2 Index Posi
+          Value :0x00000000 0
+ Index: 30a0 Datatype: 0005 Objectcode: 09 Name: Current Control Parameter Set
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Current Control Parameter Set
+          Value :0x03 3
+  Sub: 01 Datatype: 0007 Bitlength: 0020 Obj.access: 013f Name: Current Regulator P Gain
+          Value :0x00029cfb 171259
+  Sub: 02 Datatype: 0007 Bitlength: 0020 Obj.access: 013f Name: Current Regulator I Gain
+          Value :0x0000089c 2204
+  Sub: 03 Datatype: 0007 Bitlength: 0020 Obj.access: 013f Name: Current Regulator FF Gain
+          Value :0x00010275 66165
+ Index: 30a1 Datatype: 0005 Objectcode: 09 Name: Position Control Parameter Set
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Position Control Parameter Set
+          Value :0x05 5
+  Sub: 01 Datatype: 0007 Bitlength: 0020 Obj.access: 013f Name: Position Regulator Bandwidth
+          Value :0x00009c40 40000
+  Sub: 02 Datatype: 0007 Bitlength: 0020 Obj.access: 013f Name: Position Regulator Damping
+          Value :0x000003e8 1000
+  Sub: 03 Datatype: 0007 Bitlength: 0020 Obj.access: 013f Name: Position Regulator Reset Time
+          Value :0x0000c350 50000
+  Sub: 04 Datatype: 0007 Bitlength: 0020 Obj.access: 013f Name: Inertia
+          Value :0x0001a440 107584
+  Sub: 05 Datatype: 0007 Bitlength: 0020 Obj.access: 013f Name: Friction
+          Value :0x000040ba 16570
+ Index: 30a9 Datatype: 0005 Objectcode: 09 Name: Internal Torque Pulses Target Torque
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Internal Torque Pulses Target Torque
+          Value :0x05 5
+  Sub: 01 Datatype: 0003 Bitlength: 0010 Obj.access: 013f Name: Internal Torque Pulses Target Torque 1
+          Value :0x0000 0
+  Sub: 02 Datatype: 0003 Bitlength: 0010 Obj.access: 013f Name: Internal Torque Pulses Target Torque 2
+          Value :0x01f4 500
+  Sub: 03 Datatype: 0003 Bitlength: 0010 Obj.access: 013f Name: Internal Torque Pulses Target Torque 3
+          Value :0x0000 0
+  Sub: 04 Datatype: 0003 Bitlength: 0010 Obj.access: 013f Name: Internal Torque Pulses Target Torque 4
+          Value :0xfffffe0c -500
+  Sub: 05 Datatype: 0003 Bitlength: 0010 Obj.access: 013f Name: Internal Torque Pulses Target Torque 5
+          Value :0x0000 0
+ Index: 30aa Datatype: 0005 Objectcode: 09 Name: Internal Torque Pulses Pulse Width
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Internal Torque Pulses Pulse Width
+          Value :0x05 5
+  Sub: 01 Datatype: 0006 Bitlength: 0010 Obj.access: 013f Name: Internal Torque Pulses Pulse Width 1
+          Value :0x000a 10
+  Sub: 02 Datatype: 0006 Bitlength: 0010 Obj.access: 013f Name: Internal Torque Pulses Pulse Width 2
+          Value :0x000a 10
+  Sub: 03 Datatype: 0006 Bitlength: 0010 Obj.access: 013f Name: Internal Torque Pulses Pulse Width 3
+          Value :0x000a 10
+  Sub: 04 Datatype: 0006 Bitlength: 0010 Obj.access: 013f Name: Internal Torque Pulses Pulse Width 4
+          Value :0x000a 10
+  Sub: 05 Datatype: 0006 Bitlength: 0010 Obj.access: 013f Name: Internal Torque Pulses Pulse Width 5
+          Value :0x000a 10
+ Index: 30ab Datatype: 0007 Objectcode: 07 Name: Internal Torque Pulses Number Of Sequenc
+  Sub: 00 Datatype: 0007 Bitlength: 0020 Obj.access: 013f Name: Internal Torque Pulses Number Of Sequenc
+          Value :0x000003e8 1000
+ Index: 30ac Datatype: 0007 Objectcode: 07 Name: Internal Torque Pulses Sequence Counter
+  Sub: 00 Datatype: 0007 Bitlength: 0020 Obj.access: 0007 Name: Internal Torque Pulses Sequence Counter
+          Value :0x00000000 0
+ Index: 30b0 Datatype: 0004 Objectcode: 07 Name: Home Position
+  Sub: 00 Datatype: 0004 Bitlength: 0020 Obj.access: 01ff Name: Home Position
+          Value :0x00000000 0
+ Index: 30b1 Datatype: 0004 Objectcode: 07 Name: Home Offset Move Distance
+  Sub: 00 Datatype: 0004 Bitlength: 0020 Obj.access: 013f Name: Home Offset Move Distance
+          Value :0x00000000 0
+ Index: 30b2 Datatype: 0006 Objectcode: 07 Name: Current Threshold for Homing Mode
+  Sub: 00 Datatype: 0006 Bitlength: 0010 Obj.access: 013f Name: Current Threshold for Homing Mode
+          Value :0x01f4 500
+ Index: 30b5 Datatype: 0005 Objectcode: 09 Name: Internal Homing Data
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Internal Homing Data
+          Value :0x01 1
+  Sub: 01 Datatype: 0004 Bitlength: 0020 Obj.access: 013f Name: Internal Absolute Home Reference
+          Value :0x00000000 0
+ Index: 30d0 Datatype: 0003 Objectcode: 07 Name: Current Demand Value
+  Sub: 00 Datatype: 0003 Bitlength: 0010 Obj.access: 0087 Name: Current Demand Value
+          Value :0x0000 0
+ Index: 30d1 Datatype: 0003 Objectcode: 07 Name: Current Actual Value Averaged
+  Sub: 00 Datatype: 0003 Bitlength: 0010 Obj.access: 0087 Name: Current Actual Value Averaged
+          Value :0x0000 0
+ Index: 30d5 Datatype: 0004 Objectcode: 07 Name: Velocity Actual Value Averaged
+  Sub: 00 Datatype: 0004 Bitlength: 0020 Obj.access: 0087 Name: Velocity Actual Value Averaged
+          Value :0x00000000 0
+ Index: 30d6 Datatype: 0004 Objectcode: 07 Name: Internal Velocity Observed Value
+  Sub: 00 Datatype: 0004 Bitlength: 0020 Obj.access: 0007 Name: Internal Velocity Observed Value
+          Value :0x00000000 0
+ Index: 30d7 Datatype: 0004 Objectcode: 07 Name: Internal Velocity Actual Following Error
+  Sub: 00 Datatype: 0004 Bitlength: 0020 Obj.access: 0007 Name: Internal Velocity Actual Following Error
+          Value :0x00000000 0
+ Index: 30e0 Datatype: 0005 Objectcode: 09 Name: Standstill Window Configuration
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Standstill Window Configuration
+          Value :0x03 3
+  Sub: 01 Datatype: 0007 Bitlength: 0020 Obj.access: 013f Name: Standstill Window
+          Value :0x0000001e 30
+  Sub: 02 Datatype: 0006 Bitlength: 0010 Obj.access: 013f Name: Standstill Window Time
+          Value :0x0002 2
+  Sub: 03 Datatype: 0006 Bitlength: 0010 Obj.access: 013f Name: Standstill Window Timeout
+          Value :0x03e8 1000
+ Index: 3141 Datatype: 0005 Objectcode: 09 Name: Digital Input Properties
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Digital Input Properties
+          Value :0x02 2
+  Sub: 01 Datatype: 0006 Bitlength: 0010 Obj.access: 0087 Name: Digital Input Properties Logic State
+          Value :0x0000 0
+  Sub: 02 Datatype: 0006 Bitlength: 0010 Obj.access: 013f Name: Digital Input Properties Polarity
+          Value :0x0000 0
+ Index: 3142 Datatype: 0005 Objectcode: 09 Name: Configuration Of Digital Inputs
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Configuration Of Digital Inputs
+          Value :0x06 6
+  Sub: 01 Datatype: 0005 Bitlength: 0008 Obj.access: 013f Name: Digital Input 1 Configuration
+          Value :0x00 0
+  Sub: 02 Datatype: 0005 Bitlength: 0008 Obj.access: 013f Name: Digital Input 2 Configuration
+          Value :0x01 1
+  Sub: 03 Datatype: 0005 Bitlength: 0008 Obj.access: 013f Name: Digital Input 3 Configuration
+          Value :0x02 2
+  Sub: 04 Datatype: 0005 Bitlength: 0008 Obj.access: 013f Name: Digital Input 4 Configuration
+          Value :0x13 19
+  Sub: 05 Datatype: 0005 Bitlength: 0008 Obj.access: 013f Name: Digital Input 5 Configuration
+          Value :0x14 20
+  Sub: 06 Datatype: 0005 Bitlength: 0008 Obj.access: 013f Name: Digital Input 6 Configuration
+          Value :0x15 21
+ Index: 3150 Datatype: 0005 Objectcode: 09 Name: Digital Output Properties
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Digital Output Properties
+          Value :0x02 2
+  Sub: 01 Datatype: 0006 Bitlength: 0010 Obj.access: 0087 Name: Digital Output Properties Logic State
+          Value :0x0003 3
+  Sub: 02 Datatype: 0006 Bitlength: 0010 Obj.access: 013f Name: Digital Output Properties Polarity
+          Value :0x0000 0
+ Index: 3151 Datatype: 0005 Objectcode: 09 Name: Configuration Of Digital Outputs
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Configuration Of Digital Outputs
+          Value :0x03 3
+  Sub: 01 Datatype: 0005 Bitlength: 0008 Obj.access: 013f Name: Digital Output 1 Configuration
+          Value :0x10 16
+  Sub: 02 Datatype: 0005 Bitlength: 0008 Obj.access: 013f Name: Digital Output 2 Configuration
+          Value :0x11 17
+  Sub: 03 Datatype: 0005 Bitlength: 0008 Obj.access: 013f Name: Digital Output 3 Configuration
+          Value :0x12 18
+ Index: 3158 Datatype: 0005 Objectcode: 09 Name: Holding Brake Configuration
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Holding Brake Configuration
+          Value :0x02 2
+  Sub: 01 Datatype: 0006 Bitlength: 0010 Obj.access: 013f Name: Holding Brake Rise Time
+          Value :0x000a 10
+  Sub: 02 Datatype: 0006 Bitlength: 0010 Obj.access: 013f Name: Holding Brake Fall Time
+          Value :0x000a 10
+ Index: 31e0 Datatype: 0005 Objectcode: 09 Name: Internal Data Recorder Variable Index
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Internal Data Recorder Variable Index
+          Value :0x04 4
+  Sub: 01 Datatype: 0007 Bitlength: 0020 Obj.access: 013f Name: Internal Data Recorder Variable Index 1
+          Value :0x00000000 0
+  Sub: 02 Datatype: 0007 Bitlength: 0020 Obj.access: 013f Name: Internal Data Recorder Variable Index 2
+          Value :0x00000000 0
+  Sub: 03 Datatype: 0007 Bitlength: 0020 Obj.access: 013f Name: Internal Data Recorder Variable Index 3
+          Value :0x00000000 0
+  Sub: 04 Datatype: 0007 Bitlength: 0020 Obj.access: 013f Name: Internal Data Recorder Variable Index 4
+          Value :0x00000000 0
+ Index: 31e1 Datatype: 0005 Objectcode: 09 Name: Internal Data Recorder Configuration
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Internal Data Recorder Configuration
+          Value :0x02 2
+  Sub: 01 Datatype: 0006 Bitlength: 0010 Obj.access: 013f Name: Internal Data Recorder Sampling Period
+          Value :0x0064 100
+  Sub: 02 Datatype: 0006 Bitlength: 0010 Obj.access: 013f Name: Internal Data Recorder Max Number of Sam
+          Value :0x01f4 500
+ Index: 31e2 Datatype: 0005 Objectcode: 09 Name: Internal Data Recorder Trigger
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Internal Data Recorder Trigger
+          Value :0x06 6
+  Sub: 01 Datatype: 0007 Bitlength: 0020 Obj.access: 013f Name: Internal Data Recorder Trigger Variable 
+          Value :0x00000000 0
+  Sub: 02 Datatype: 0005 Bitlength: 0008 Obj.access: 013f Name: Internal Data Recorder Trigger Mode
+          Value :0x00 0
+  Sub: 03 Datatype: 0007 Bitlength: 0020 Obj.access: 013f Name: Internal Data Recorder Trigger High Valu
+          Value :0x00000000 0
+  Sub: 04 Datatype: 0007 Bitlength: 0020 Obj.access: 013f Name: Internal Data Recorder Trigger Low Value
+          Value :0x00000000 0
+  Sub: 05 Datatype: 0007 Bitlength: 0020 Obj.access: 013f Name: Internal Data Recorder Trigger Mask
+          Value :0xffffffff 4294967295
+  Sub: 06 Datatype: 0006 Bitlength: 0010 Obj.access: 013f Name: Internal Data Recorder Trigger Number of
+          Value :0x0000 0
+ Index: 31e4 Datatype: 0005 Objectcode: 09 Name: Internal Data Recorder Control
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Internal Data Recorder Control
+          Value :0x02 2
+  Sub: 01 Datatype: 0006 Bitlength: 0010 Obj.access: 00ff Name: Internal Data Recorder Controlword
+          Value :0x0000 0
+  Sub: 02 Datatype: 0006 Bitlength: 0010 Obj.access: 0087 Name: Internal Data Recorder Statusword
+          Value :0x0000 0
+ Index: 31e5 Datatype: 0005 Objectcode: 09 Name: Internal Data Recorder Data
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Internal Data Recorder Data
+          Value :0x03 3
+  Sub: 01 Datatype: 0006 Bitlength: 0010 Obj.access: 0007 Name: Internal Data Recorder Number of Recorde
+          Value :0x0000 0
+  Sub: 02 Datatype: 0007 Bitlength: 0020 Obj.access: 0007 Name: Internal Recorder Buffer Timestamp [us]
+          Value :0x00000000 0
+  Sub: 03 Datatype: 000a Bitlength: 00a0 Obj.access: 0007 Name: Internal Recorder Snapshot
+          Value :0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x00 0x15 0x67 0x75 0x47 
+ Index: 31e6 Datatype: 0005 Objectcode: 09 Name: Internal Data Recorder Buffer Variable 1
+Time:   17788.660 PACKET slave:1 index:31e6.01 error:1
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Internal Data Recorder Buffer Variable 1
+          Value :0x05 5
+  Sub: 02 Datatype: 000a Bitlength: 3e80 Obj.access: 0007 Name: Internal Data Recorder Buffer Variable 1
+          Value :Time:   17788.666 PACKET slave:1 index:31e6.02 error:3
+
+  Sub: 03 Datatype: 000a Bitlength: 3e80 Obj.access: 0007 Name: Internal Data Recorder Buffer Variable 1
+          Value :Time:   17788.668 PACKET slave:1 index:31e6.03 error:3
+
+  Sub: 04 Datatype: 000a Bitlength: 3e80 Obj.access: 0007 Name: Internal Data Recorder Buffer Variable 1
+          Value :Time:   17788.670 PACKET slave:1 index:31e6.04 error:3
+
+  Sub: 05 Datatype: 000a Bitlength: 3e80 Obj.access: 0007 Name: Internal Data Recorder Buffer Variable 1
+          Value :Time:   17788.672 PACKET slave:1 index:31e6.05 error:3
+
+ Index: 31e7 Datatype: 0005 Objectcode: 09 Name: Internal Data Recorder Buffer Variable 2
+Time:   17788.674 PACKET slave:1 index:31e7.01 error:1
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Internal Data Recorder Buffer Variable 2
+          Value :0x05 5
+  Sub: 02 Datatype: 000a Bitlength: 3e80 Obj.access: 0007 Name: Internal Data Recorder Buffer Variable 2
+          Value :Time:   17788.680 PACKET slave:1 index:31e7.02 error:3
+
+  Sub: 03 Datatype: 000a Bitlength: 3e80 Obj.access: 0007 Name: Internal Data Recorder Buffer Variable 2
+          Value :Time:   17788.682 PACKET slave:1 index:31e7.03 error:3
+
+  Sub: 04 Datatype: 000a Bitlength: 3e80 Obj.access: 0007 Name: Internal Data Recorder Buffer Variable 2
+          Value :Time:   17788.684 PACKET slave:1 index:31e7.04 error:3
+
+  Sub: 05 Datatype: 000a Bitlength: 3e80 Obj.access: 0007 Name: Internal Data Recorder Buffer Variable 2
+          Value :Time:   17788.686 PACKET slave:1 index:31e7.05 error:3
+
+ Index: 31e8 Datatype: 0005 Objectcode: 09 Name: Internal Data Recorder Buffer Variable 3
+Time:   17788.689 PACKET slave:1 index:31e8.01 error:1
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Internal Data Recorder Buffer Variable 3
+          Value :0x05 5
+  Sub: 02 Datatype: 000a Bitlength: 3e80 Obj.access: 0007 Name: Internal Data Recorder Buffer Variable 3
+          Value :Time:   17788.694 PACKET slave:1 index:31e8.02 error:3
+
+  Sub: 03 Datatype: 000a Bitlength: 3e80 Obj.access: 0007 Name: Internal Data Recorder Buffer Variable 3
+          Value :Time:   17788.696 PACKET slave:1 index:31e8.03 error:3
+
+  Sub: 04 Datatype: 000a Bitlength: 3e80 Obj.access: 0007 Name: Internal Data Recorder Buffer Variable 3
+          Value :Time:   17788.698 PACKET slave:1 index:31e8.04 error:3
+
+  Sub: 05 Datatype: 000a Bitlength: 3e80 Obj.access: 0007 Name: Internal Data Recorder Buffer Variable 3
+          Value :Time:   17788.700 PACKET slave:1 index:31e8.05 error:3
+
+ Index: 31e9 Datatype: 0005 Objectcode: 09 Name: Internal Data Recorder Buffer Variable 4
+Time:   17788.702 PACKET slave:1 index:31e9.01 error:1
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Internal Data Recorder Buffer Variable 4
+          Value :0x05 5
+  Sub: 02 Datatype: 000a Bitlength: 3e80 Obj.access: 0007 Name: Internal Data Recorder Buffer Variable 4
+          Value :Time:   17788.708 PACKET slave:1 index:31e9.02 error:3
+
+  Sub: 03 Datatype: 000a Bitlength: 3e80 Obj.access: 0007 Name: Internal Data Recorder Buffer Variable 4
+          Value :Time:   17788.710 PACKET slave:1 index:31e9.03 error:3
+
+  Sub: 04 Datatype: 000a Bitlength: 3e80 Obj.access: 0007 Name: Internal Data Recorder Buffer Variable 4
+          Value :Time:   17788.712 PACKET slave:1 index:31e9.04 error:3
+
+  Sub: 05 Datatype: 000a Bitlength: 3e80 Obj.access: 0007 Name: Internal Data Recorder Buffer Variable 4
+          Value :Time:   17788.714 PACKET slave:1 index:31e9.05 error:3
+
+ Index: 3200 Datatype: 0005 Objectcode: 07 Name: Internal Logger Control
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 003f Name: Internal Logger Control
+          Value :0x00 0
+ Index: 3201 Datatype: 0005 Objectcode: 07 Name: Internal Logger Status
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Internal Logger Status
+          Value :0x00 0
+ Index: 3202 Datatype: 0005 Objectcode: 07 Name: Internal Logger Sampling Rate
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 003f Name: Internal Logger Sampling Rate
+          Value :0x01 1
+ Index: 3203 Datatype: 0005 Objectcode: 09 Name: Internal Logger Channel Selection
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Internal Logger Channel Selection
+          Value :0x04 4
+  Sub: 01 Datatype: 0005 Bitlength: 0008 Obj.access: 003f Name: Internal Logger Channel 1 Selection
+          Value :0x00 0
+  Sub: 02 Datatype: 0005 Bitlength: 0008 Obj.access: 003f Name: Internal Logger Channel 2 Selection
+          Value :0x00 0
+  Sub: 03 Datatype: 0005 Bitlength: 0008 Obj.access: 003f Name: Internal Logger Channel 3 Selection
+          Value :0x00 0
+  Sub: 04 Datatype: 0005 Bitlength: 0008 Obj.access: 003f Name: Internal Logger Channel 4 Selection
+          Value :0x00 0
+ Index: 3204 Datatype: 0005 Objectcode: 09 Name: Internal Logger Channel Values
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Internal Logger Channel Values
+          Value :0x04 4
+  Sub: 01 Datatype: 000a Bitlength: 0640 Obj.access: 0007 Name: Internal Logger Channel 1 Values
+          Value :Time:   17788.734 PACKET slave:1 index:3204.01 error:3
+
+  Sub: 02 Datatype: 000a Bitlength: 0640 Obj.access: 0007 Name: Internal Logger Channel 2 Values
+          Value :Time:   17788.735 PACKET slave:1 index:3204.02 error:3
+
+  Sub: 03 Datatype: 000a Bitlength: 0640 Obj.access: 0007 Name: Internal Logger Channel 3 Values
+          Value :Time:   17788.736 PACKET slave:1 index:3204.03 error:3
+
+  Sub: 04 Datatype: 000a Bitlength: 0640 Obj.access: 0007 Name: Internal Logger Channel 4 Values
+          Value :Time:   17788.737 PACKET slave:1 index:3204.04 error:3
+
+ Index: 3205 Datatype: 0005 Objectcode: 09 Name: Internal Logger Trigger
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Internal Logger Trigger
+          Value :0x05 5
+  Sub: 01 Datatype: 0005 Bitlength: 0008 Obj.access: 003f Name: Internal Logger Trigger Input Type
+          Value :0x00 0
+  Sub: 02 Datatype: 0005 Bitlength: 0008 Obj.access: 003f Name: Internal Logger Trigger Signal
+          Value :0x00 0
+  Sub: 03 Datatype: 0005 Bitlength: 0008 Obj.access: 003f Name: Internal Logger Trigger Condition
+          Value :0x00 0
+  Sub: 04 Datatype: 0004 Bitlength: 0020 Obj.access: 003f Name: Internal Logger Trigger Compare Value
+          Value :0x00000000 0
+  Sub: 05 Datatype: 0005 Bitlength: 0008 Obj.access: 003f Name: Internal Logger Trigger Preceding Sample
+          Value :0x00 0
+ Index: 3218 Datatype: 000a Objectcode: 07 Name: Internal Move Profile Data
+  Sub: 00 Datatype: 000a Bitlength: 0080 Obj.access: 0007 Name: Internal Move Profile Data
+          Value :0xffffffb4 0x7c 0x77 0x01 0x1e 0x7d 0x77 0x01 0x00 0x00 0x00 0x00 0xffffff8d 0xffffffc9 0x76 0x47 
+ Index: 3219 Datatype: 0005 Objectcode: 09 Name: Internal Regulation Parameters
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Internal Regulation Parameters
+          Value :0x05 5
+  Sub: 01 Datatype: 0007 Bitlength: 0020 Obj.access: 0007 Name: Internal Timestamp
+          Value :0x4776e1f4 1198973428
+  Sub: 02 Datatype: 0007 Bitlength: 0020 Obj.access: 013f Name: Internal Winding Resistance
+          Value :0x000004ee 1262
+  Sub: 03 Datatype: 0007 Bitlength: 0020 Obj.access: 013f Name: Internal Winding Inductance
+          Value :0x000000af 175
+  Sub: 04 Datatype: 0004 Bitlength: 0020 Obj.access: 0007 Name: Internal Winding Temperature
+          Value :0x000000fa 250
+  Sub: 05 Datatype: 0004 Bitlength: 0020 Obj.access: 0007 Name: Internal Controller Temperature
+          Value :0x000000fa 250
+ Index: 6007 Datatype: 0003 Objectcode: 07 Name: Abort Connection Option Code
+  Sub: 00 Datatype: 0003 Bitlength: 0010 Obj.access: 013f Name: Abort Connection Option Code
+          Value :0x0003 3
+ Index: 603f Datatype: 0006 Objectcode: 07 Name: Error Code
+  Sub: 00 Datatype: 0006 Bitlength: 0010 Obj.access: 0087 Name: Error Code
+          Value :0x8180 33152
+ Index: 6040 Datatype: 0006 Objectcode: 07 Name: Controlword
+  Sub: 00 Datatype: 0006 Bitlength: 0010 Obj.access: 00ff Name: Controlword
+          Value :0x0007 7
+ Index: 6041 Datatype: 0006 Objectcode: 07 Name: Statusword
+  Sub: 00 Datatype: 0006 Bitlength: 0010 Obj.access: 0087 Name: Statusword
+          Value :0x0108 264
+ Index: 605a Datatype: 0003 Objectcode: 07 Name: Quick Stop Option Code
+  Sub: 00 Datatype: 0003 Bitlength: 0010 Obj.access: 013f Name: Quick Stop Option Code
+          Value :0x0006 6
+ Index: 605b Datatype: 0003 Objectcode: 07 Name: Shutdown Option Code
+  Sub: 00 Datatype: 0003 Bitlength: 0010 Obj.access: 013f Name: Shutdown Option Code
+          Value :0x0001 1
+ Index: 605c Datatype: 0003 Objectcode: 07 Name: Disable Operation Option Code
+  Sub: 00 Datatype: 0003 Bitlength: 0010 Obj.access: 013f Name: Disable Operation Option Code
+          Value :0x0001 1
+ Index: 605d Datatype: 0003 Objectcode: 07 Name: Halt Option Code
+  Sub: 00 Datatype: 0003 Bitlength: 0010 Obj.access: 013f Name: Halt Option Code
+          Value :0x0002 2
+ Index: 605e Datatype: 0003 Objectcode: 07 Name: Fault Reaction Option Code
+  Sub: 00 Datatype: 0003 Bitlength: 0010 Obj.access: 013f Name: Fault Reaction Option Code
+          Value :0x0002 2
+ Index: 6060 Datatype: 0002 Objectcode: 07 Name: Modes Of Operation
+  Sub: 00 Datatype: 0002 Bitlength: 0008 Obj.access: 01ff Name: Modes Of Operation
+          Value :0x0a 10
+ Index: 6061 Datatype: 0002 Objectcode: 07 Name: Modes Of Operation Display
+  Sub: 00 Datatype: 0002 Bitlength: 0008 Obj.access: 0087 Name: Modes Of Operation Display
+          Value :0x0a 10
+ Index: 6062 Datatype: 0004 Objectcode: 07 Name: Position Demand Value
+  Sub: 00 Datatype: 0004 Bitlength: 0020 Obj.access: 0087 Name: Position Demand Value
+          Value :0x01777d1e 24608030
+ Index: 6064 Datatype: 0004 Objectcode: 07 Name: Position Actual Value
+  Sub: 00 Datatype: 0004 Bitlength: 0020 Obj.access: 0087 Name: Position Actual Value
+          Value :0x01777cb4 24607924
+ Index: 6065 Datatype: 0007 Objectcode: 07 Name: Following Error Window
+  Sub: 00 Datatype: 0007 Bitlength: 0020 Obj.access: 01ff Name: Following Error Window
+          Value :0x001e8480 2000000
+ Index: 6066 Datatype: 0006 Objectcode: 07 Name: Following Error Timeout
+  Sub: 00 Datatype: 0006 Bitlength: 0010 Obj.access: 01ff Name: Following Error Timeout
+          Value :0x0000 0
+ Index: 606b Datatype: 0004 Objectcode: 07 Name: Velocity Demand Value
+  Sub: 00 Datatype: 0004 Bitlength: 0020 Obj.access: 0087 Name: Velocity Demand Value
+          Value :0x00000000 0
+ Index: 606c Datatype: 0004 Objectcode: 07 Name: Velocity Actual Value
+  Sub: 00 Datatype: 0004 Bitlength: 0020 Obj.access: 0087 Name: Velocity Actual Value
+          Value :0x00000000 0
+ Index: 6071 Datatype: 0003 Objectcode: 07 Name: Target Torque
+  Sub: 00 Datatype: 0003 Bitlength: 0010 Obj.access: 00ff Name: Target Torque
+          Value :0x0000 0
+ Index: 6076 Datatype: 0007 Objectcode: 07 Name: Motor Rated Torque
+  Sub: 00 Datatype: 0007 Bitlength: 0020 Obj.access: 00ff Name: Motor Rated Torque
+          Value :0x0000e6b8 59064
+ Index: 6077 Datatype: 0003 Objectcode: 07 Name: Torque Actual Value
+  Sub: 00 Datatype: 0003 Bitlength: 0010 Obj.access: 0087 Name: Torque Actual Value
+          Value :0x0000 0
+ Index: 6078 Datatype: 0003 Objectcode: 07 Name: Current Actual Value
+  Sub: 00 Datatype: 0003 Bitlength: 0010 Obj.access: 0087 Name: Current Actual Value
+          Value :0x0000 0
+ Index: 607a Datatype: 0004 Objectcode: 07 Name: Target Position
+  Sub: 00 Datatype: 0004 Bitlength: 0020 Obj.access: 00ff Name: Target Position
+          Value :0x00000000 0
+ Index: 607b Datatype: 0005 Objectcode: 09 Name: Position Range Limit
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Position Range Limit
+          Value :0x02 2
+  Sub: 01 Datatype: 0004 Bitlength: 0020 Obj.access: 01ff Name: Min Position Range Limit
+          Value :0x80000000 -2147483648
+  Sub: 02 Datatype: 0004 Bitlength: 0020 Obj.access: 01ff Name: Max Position Range Limit
+          Value :0x7fffffff 2147483647
+ Index: 607d Datatype: 0005 Objectcode: 09 Name: Software Position Limit
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Software Position Limit
+          Value :0x02 2
+  Sub: 01 Datatype: 0004 Bitlength: 0020 Obj.access: 01ff Name: Min Position Limit
+          Value :0x80000000 -2147483648
+  Sub: 02 Datatype: 0004 Bitlength: 0020 Obj.access: 01ff Name: Max Position Limit
+          Value :0x7fffffff 2147483647
+ Index: 607f Datatype: 0007 Objectcode: 07 Name: Max Profile Velocity
+  Sub: 00 Datatype: 0007 Bitlength: 0020 Obj.access: 01ff Name: Max Profile Velocity
+          Value :0x00002710 10000
+ Index: 6080 Datatype: 0007 Objectcode: 07 Name: Max Motor Speed
+  Sub: 00 Datatype: 0007 Bitlength: 0020 Obj.access: 013f Name: Max Motor Speed
+          Value :0x00003840 14400
+ Index: 6081 Datatype: 0007 Objectcode: 07 Name: Profile Velocity
+  Sub: 00 Datatype: 0007 Bitlength: 0020 Obj.access: 01ff Name: Profile Velocity
+          Value :0x000003e8 1000
+ Index: 6083 Datatype: 0007 Objectcode: 07 Name: Profile Acceleration
+  Sub: 00 Datatype: 0007 Bitlength: 0020 Obj.access: 01ff Name: Profile Acceleration
+          Value :0x000001f4 500
+ Index: 6084 Datatype: 0007 Objectcode: 07 Name: Profile Deceleration
+  Sub: 00 Datatype: 0007 Bitlength: 0020 Obj.access: 01ff Name: Profile Deceleration
+          Value :0x000001f4 500
+ Index: 6085 Datatype: 0007 Objectcode: 07 Name: Quick Stop Deceleration
+  Sub: 00 Datatype: 0007 Bitlength: 0020 Obj.access: 01ff Name: Quick Stop Deceleration
+          Value :0x000001f4 500
+ Index: 6086 Datatype: 0003 Objectcode: 07 Name: Motion Profile Type
+  Sub: 00 Datatype: 0003 Bitlength: 0010 Obj.access: 01ff Name: Motion Profile Type
+          Value :0x0000 0
+ Index: 6098 Datatype: 0002 Objectcode: 07 Name: Homing Method
+  Sub: 00 Datatype: 0002 Bitlength: 0008 Obj.access: 01ff Name: Homing Method
+          Value :0x17 23
+ Index: 6099 Datatype: 0005 Objectcode: 09 Name: Homing Speeds
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 013f Name: Homing Speeds
+          Value :0x02 2
+  Sub: 01 Datatype: 0007 Bitlength: 0020 Obj.access: 01ff Name: Speed for Switch Search
+          Value :0x000001f4 500
+  Sub: 02 Datatype: 0007 Bitlength: 0020 Obj.access: 01ff Name: Speed for Zero Search
+          Value :0x00000032 50
+ Index: 609a Datatype: 0007 Objectcode: 07 Name: Homing Acceleration
+  Sub: 00 Datatype: 0007 Bitlength: 0020 Obj.access: 01ff Name: Homing Acceleration
+          Value :0x000001f4 500
+ Index: 60a8 Datatype: 0007 Objectcode: 07 Name: SI Unit Position
+  Sub: 00 Datatype: 0007 Bitlength: 0020 Obj.access: 013f Name: SI Unit Position
+          Value :0x00b50000 11862016
+ Index: 60a9 Datatype: 0007 Objectcode: 07 Name: SI Unit Velocity
+  Sub: 00 Datatype: 0007 Bitlength: 0020 Obj.access: 013f Name: SI Unit Velocity
+          Value :0x00b44700 11814656
+ Index: 60aa Datatype: 0007 Objectcode: 07 Name: SI Unit Acceleration
+  Sub: 00 Datatype: 0007 Bitlength: 0020 Obj.access: 013f Name: SI Unit Acceleration
+          Value :0x00c00300 12583680
+ Index: 60b0 Datatype: 0004 Objectcode: 07 Name: Position Offset
+  Sub: 00 Datatype: 0004 Bitlength: 0020 Obj.access: 00ff Name: Position Offset
+          Value :0x00000000 0
+ Index: 60b1 Datatype: 0004 Objectcode: 07 Name: Velocity Offset
+  Sub: 00 Datatype: 0004 Bitlength: 0020 Obj.access: 00ff Name: Velocity Offset
+          Value :0x00000000 0
+ Index: 60b2 Datatype: 0003 Objectcode: 07 Name: Torque Offset
+  Sub: 00 Datatype: 0003 Bitlength: 0010 Obj.access: 00ff Name: Torque Offset
+          Value :0x0800 2048
+ Index: 60b8 Datatype: 0006 Objectcode: 07 Name: Touch Probe Function
+  Sub: 00 Datatype: 0006 Bitlength: 0010 Obj.access: 01ff Name: Touch Probe Function
+          Value :0x0000 0
+ Index: 60b9 Datatype: 0006 Objectcode: 07 Name: Touch Probe Status
+  Sub: 00 Datatype: 0006 Bitlength: 0010 Obj.access: 0087 Name: Touch Probe Status
+          Value :0x0000 0
+ Index: 60ba Datatype: 0004 Objectcode: 07 Name: Touch Probe Position 1 Positive Value
+  Sub: 00 Datatype: 0004 Bitlength: 0020 Obj.access: 0087 Name: Touch Probe Position 1 Positive Value
+          Value :0x00000000 0
+ Index: 60bb Datatype: 0004 Objectcode: 07 Name: Touch Probe Position 1 Negative Value
+  Sub: 00 Datatype: 0004 Bitlength: 0020 Obj.access: 0087 Name: Touch Probe Position 1 Negative Value
+          Value :0x00000000 0
+ Index: 60c2 Datatype: 0005 Objectcode: 09 Name: Interpolation Time Period
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Interpolation Time Period
+          Value :0x02 2
+  Sub: 01 Datatype: 0005 Bitlength: 0008 Obj.access: 003f Name: Interpolation Time Period Value
+          Value :0x4f 79
+  Sub: 02 Datatype: 0002 Bitlength: 0008 Obj.access: 003f Name: Interpolation Time Index
+          Value :0xfffffffc -4
+ Index: 60c5 Datatype: 0007 Objectcode: 07 Name: MaxAcceleration
+  Sub: 00 Datatype: 0007 Bitlength: 0020 Obj.access: 013f Name: MaxAcceleration
+          Value :0x000001f4 500
+ Index: 60d0 Datatype: 0005 Objectcode: 09 Name: Touch Probe Source
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Touch Probe Source
+          Value :0x01 1
+  Sub: 01 Datatype: 0003 Bitlength: 0010 Obj.access: 0007 Name: Touch Probe 1 Source
+          Value :0xffffffff -1
+ Index: 60d5 Datatype: 0006 Objectcode: 07 Name: Touch Probe 1 Positive Edge Counter
+  Sub: 00 Datatype: 0006 Bitlength: 0010 Obj.access: 0087 Name: Touch Probe 1 Positive Edge Counter
+          Value :0x0000 0
+ Index: 60d6 Datatype: 0006 Objectcode: 07 Name: Touch Probe 1 Negative Edge Counter
+  Sub: 00 Datatype: 0006 Bitlength: 0010 Obj.access: 0087 Name: Touch Probe 1 Negative Edge Counter
+          Value :0x0000 0
+ Index: 60e3 Datatype: 0005 Objectcode: 09 Name: Supported Homing Methods
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Supported Homing Methods
+          Value :0x0f 15
+  Sub: 01 Datatype: 0003 Bitlength: 0010 Obj.access: 0007 Name: 1st Supported Homing Method
+          Value :0x0001 1
+  Sub: 02 Datatype: 0003 Bitlength: 0010 Obj.access: 0007 Name: 2nd Supported Homing Method
+          Value :0x0002 2
+  Sub: 03 Datatype: 0003 Bitlength: 0010 Obj.access: 0007 Name: 3th Supported Homing Method
+          Value :0x0007 7
+  Sub: 04 Datatype: 0003 Bitlength: 0010 Obj.access: 0007 Name: 4th Supported Homing Method
+          Value :0x000b 11
+  Sub: 05 Datatype: 0003 Bitlength: 0010 Obj.access: 0007 Name: 5th Supported Homing Method
+          Value :0x0011 17
+  Sub: 06 Datatype: 0003 Bitlength: 0010 Obj.access: 0007 Name: 6th Supported Homing Method
+          Value :0x0012 18
+  Sub: 07 Datatype: 0003 Bitlength: 0010 Obj.access: 0007 Name: 7th Supported Homing Method
+          Value :0x0017 23
+  Sub: 08 Datatype: 0003 Bitlength: 0010 Obj.access: 0007 Name: 8th Supported Homing Method
+          Value :0x001b 27
+  Sub: 09 Datatype: 0003 Bitlength: 0010 Obj.access: 0007 Name: 9th Supported Homing Method
+          Value :0x0021 33
+  Sub: 0a Datatype: 0003 Bitlength: 0010 Obj.access: 0007 Name: 10th Supported Homing Method
+          Value :0x0022 34
+  Sub: 0b Datatype: 0003 Bitlength: 0010 Obj.access: 0007 Name: 11th Supported Homing Method
+          Value :0x0025 37
+  Sub: 0c Datatype: 0003 Bitlength: 0010 Obj.access: 0007 Name: 12th Supported Homing Method
+          Value :0xffffffff -1
+  Sub: 0d Datatype: 0003 Bitlength: 0010 Obj.access: 0007 Name: 13th Supported Homing Method
+          Value :0xfffffffe -2
+  Sub: 0e Datatype: 0003 Bitlength: 0010 Obj.access: 0007 Name: 14th Supported Homing Method
+          Value :0xfffffffd -3
+  Sub: 0f Datatype: 0003 Bitlength: 0010 Obj.access: 0007 Name: 15th Supported Homing Method
+          Value :0xfffffffc -4
+ Index: 60e4 Datatype: 0005 Objectcode: 09 Name: Additional Position Actual Values
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Additional Position Actual Values
+          Value :0x03 3
+  Sub: 01 Datatype: 0004 Bitlength: 0020 Obj.access: 0087 Name: Position Actual Value Sensor 1
+          Value :0x01777cb4 24607924
+  Sub: 02 Datatype: 0004 Bitlength: 0020 Obj.access: 0087 Name: Position Actual Value Sensor 2
+          Value :0x00000000 0
+  Sub: 03 Datatype: 0004 Bitlength: 0020 Obj.access: 0087 Name: Position Actual Value Sensor 3
+          Value :0x00000000 0
+ Index: 60e5 Datatype: 0005 Objectcode: 09 Name: Additional Velocity Actual Values
+Time:   17788.899 PACKET slave:1 index:60e5.04 error:1
+Time:   17788.899 PACKET slave:1 index:60e5.05 error:1
+Time:   17788.900 PACKET slave:1 index:60e5.06 error:1
+Time:   17788.901 PACKET slave:1 index:60e5.07 error:1
+Time:   17788.901 PACKET slave:1 index:60e5.08 error:1
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Additional Velocity Actual Values
+          Value :0x0b 11
+  Sub: 01 Datatype: 0004 Bitlength: 0020 Obj.access: 0087 Name: Velocity Actual Value Sensor 1
+          Value :0x00000000 0
+  Sub: 02 Datatype: 0004 Bitlength: 0020 Obj.access: 0087 Name: Velocity Actual Value Sensor 2
+          Value :0x00000000 0
+  Sub: 03 Datatype: 0004 Bitlength: 0020 Obj.access: 0087 Name: Velocity Actual Value Sensor 3
+          Value :0x00000000 0
+  Sub: 09 Datatype: 0004 Bitlength: 0020 Obj.access: 0087 Name: Velocity Actual Value Averaged Sensor 1
+          Value :0x00000000 0
+  Sub: 0a Datatype: 0004 Bitlength: 0020 Obj.access: 0087 Name: Velocity Actual Value Averaged Sensor 2
+          Value :0x00000000 0
+  Sub: 0b Datatype: 0004 Bitlength: 0020 Obj.access: 0087 Name: Velocity Actual Value Averaged Sensor 3
+          Value :0x00000000 0
+ Index: 60f4 Datatype: 0004 Objectcode: 07 Name: Following Error Actual Value
+  Sub: 00 Datatype: 0004 Bitlength: 0020 Obj.access: 0087 Name: Following Error Actual Value
+          Value :0x00000000 0
+ Index: 60fd Datatype: 0007 Objectcode: 07 Name: Digital Inputs
+  Sub: 00 Datatype: 0007 Bitlength: 0020 Obj.access: 0087 Name: Digital Inputs
+          Value :0x00000000 0
+ Index: 60fe Datatype: 0005 Objectcode: 09 Name: Digital Outputs
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Digital Outputs
+          Value :0x01 1
+  Sub: 01 Datatype: 0007 Bitlength: 0020 Obj.access: 00ff Name: Physical Outputs
+          Value :0x00030000 196608
+ Index: 60ff Datatype: 0004 Objectcode: 07 Name: Target Velocity
+  Sub: 00 Datatype: 0004 Bitlength: 0020 Obj.access: 00ff Name: Target Velocity
+          Value :0x00000000 0
+ Index: 6402 Datatype: 0006 Objectcode: 07 Name: Motor Type
+  Sub: 00 Datatype: 0006 Bitlength: 0010 Obj.access: 013f Name: Motor Type
+          Value :0x0001 1
+ Index: 6502 Datatype: 0007 Objectcode: 07 Name: Supported Drive Modes
+  Sub: 00 Datatype: 0007 Bitlength: 0020 Obj.access: 0007 Name: Supported Drive Modes
+          Value :0x000003a5 933
+ Index: f000 Datatype: 0005 Objectcode: 09 Name: Modular Device Profile
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Modular Device Profile
+          Value :0x02 2
+  Sub: 01 Datatype: 0006 Bitlength: 0010 Obj.access: 0007 Name: Index Distance
+          Value :0x0010 16
+  Sub: 02 Datatype: 0006 Bitlength: 0010 Obj.access: 0007 Name: Max Number Of Modules
+          Value :0x0001 1
+ Index: f010 Datatype: 0005 Objectcode: 09 Name: Module Profile List
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Module Profile List
+          Value :0x04 4
+  Sub: 01 Datatype: 0007 Bitlength: 0020 Obj.access: 0007 Name: Module 1
+          Value :0x001002e6 1049318
+  Sub: 02 Datatype: 0007 Bitlength: 0020 Obj.access: 0007 Name: Module 2
+          Value :0x002002e6 2097894
+  Sub: 03 Datatype: 0007 Bitlength: 0020 Obj.access: 0007 Name: Module 3
+          Value :0x003002e6 3146470
+  Sub: 04 Datatype: 0007 Bitlength: 0020 Obj.access: 0007 Name: Module 4
+          Value :0x004002e6 4195046
+ Index: f050 Datatype: 0005 Objectcode: 09 Name: Detected Module List
+  Sub: 00 Datatype: 0005 Bitlength: 0008 Obj.access: 0007 Name: Detected Module List
+          Value :0x01 1
+  Sub: 01 Datatype: 0007 Bitlength: 0020 Obj.access: 0007 Name: 1st Detected Module
+          Value :0x003002e6 3146470
+End slaveinfo, close socket
+End program
+

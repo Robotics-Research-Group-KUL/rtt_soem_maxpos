@@ -1,0 +1,55 @@
+ sudo ./slaveinfo enxe4b97ab11172 -map -pdo
+SOEM (Simple Open EtherCAT Master)
+Slaveinfo
+Starting slaveinfo
+ec_init on enxe4b97ab11172 succeeded.
+1 slaves found and configured.
+Calculated workcounter 3
+
+Slave:1
+ Name:MAXPOS
+ Output size: 184bits
+ Input size: 216bits
+ State: 4
+ Delay: 0[ns]
+ Has DC: 1
+ DCParentport:0
+ Activeports:1.0.0.0
+ Configured address: 1001
+ Man: 000000fb ID: 30010000 Rev: 01210000
+ SM0 A:1000 L:1024 F:00010026 Type:1
+ SM1 A:1400 L:1024 F:00010022 Type:2
+ SM2 A:1800 L:  23 F:00010064 Type:3
+ SM3 A:1c00 L:  27 F:00010020 Type:4
+ FMMU0 Ls:00000000 Ll:  23 Lsb:0 Leb:7 Ps:1800 Psb:0 Ty:02 Act:01
+ FMMU1 Ls:00000017 Ll:  27 Lsb:0 Leb:7 Ps:1c00 Psb:0 Ty:01 Act:01
+ FMMUfunc 0:1 1:2 2:3 3:0
+ MBX length wr: 1024 rd: 1024 MBX protocols : 0c
+ CoE details: 2f FoE details: 01 EoE details: 00 SoE details: 00
+ Ebus current: 0[mA]
+ only LRD/LWR:0
+PDO mapping according to CoE :
+  SM2 outputs
+     addr b   index: sub bitl data_type    name
+  [0x0000.0] 0x6040:0x00 0x10 UNSIGNED16   Controlword
+  [0x0002.0] 0x607A:0x00 0x20 INTEGER32    Target Position
+  [0x0006.0] 0x60B0:0x00 0x20 INTEGER32    Position Offset
+  [0x000A.0] 0x60B1:0x00 0x20 INTEGER32    Velocity Offset
+  [0x000E.0] 0x60B2:0x00 0x10 INTEGER16    Torque Offset
+  [0x0010.0] 0x6060:0x00 0x08 INTEGER8     Modes Of Operation
+  [0x0011.0] 0x60FE:0x01 0x20 UNSIGNED32   Physical Outputs
+  [0x0015.0] 0x60B8:0x00 0x10 UNSIGNED16   Touch Probe Function
+  SM3 inputs
+     addr b   index: sub bitl data_type    name
+  [0x0017.0] 0x6041:0x00 0x10 UNSIGNED16   Statusword
+  [0x0019.0] 0x6064:0x00 0x20 INTEGER32    Position Actual Value
+  [0x001D.0] 0x606C:0x00 0x20 INTEGER32    Velocity Actual Value
+  [0x0021.0] 0x6077:0x00 0x10 INTEGER16    Torque Actual Value
+  [0x0023.0] 0x6061:0x00 0x08 INTEGER8     Modes Of Operation Display
+  [0x0024.0] 0x60FD:0x00 0x20 UNSIGNED32   Digital Inputs
+  [0x0028.0] 0x60B9:0x00 0x10 UNSIGNED16   Touch Probe Status
+  [0x002A.0] 0x60BA:0x00 0x20 INTEGER32    Touch Probe Position 1 Positive Value
+  [0x002E.0] 0x60BB:0x00 0x20 INTEGER32    Touch Probe Position 1 Negative Value
+End slaveinfo, close socket
+End program
+

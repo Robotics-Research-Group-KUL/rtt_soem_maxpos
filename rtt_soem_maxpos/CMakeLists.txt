@@ -23,11 +23,12 @@ endif()
 # Defines the orocos_* cmake macros. See that file for additional
 # documentation.
 include( ${OROCOS-RTT_USE_FILE_PATH}/UseOROCOS-RTT.cmake )
-                                                                                                   
+
+
 
 
 find_package(soem REQUIRED)
-include_directories(${soem_INCLUDE_DIRS})
+include_directories(${USE_OROCOS_INCLUDE_DIRS} ${catkin_INCLUDE_DIRS} ${soem_INCLUDE_DIRS})
 orocos_use_package(soem_master)
 
 
