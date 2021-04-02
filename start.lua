@@ -95,10 +95,6 @@ to bring to operational state:
     reset()
     set_mode_of_operation(9)--velocity
     switch_on()
-    target_velocity:write(0.0) 
-    126314
-     enable_operation()--warning!!! motor will move depending of your setpoints. they are initialized to zero
-disable_operation()
-target_velocity:write(6.28)
-target_velocity:write(10) 
+velocity_ramp(60,10)
+
 --]]
