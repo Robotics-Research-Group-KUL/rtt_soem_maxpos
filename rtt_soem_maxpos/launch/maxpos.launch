@@ -1,0 +1,15 @@
+<launch>
+  <arg name="LUA" default="true"/>
+
+  <include if="$(arg LUA)" file="$(find rtt_ros)/launch/rttlua.launch">
+    <arg name="NAME" value="RTT_MAXPOS"/>
+    <arg name="RTTLUA_ARGS" value="$(find rtt_soem_maxpos)/start.lua"/>
+    <arg name="DEBUG" value="false"/>
+  </include>
+
+  <include unless="$(arg LUA)" file="$(find rtt_ros)/launch/deployer.launch">
+    <arg name="DEPLOYER_ARGS" value=" $(find rtt_soem_maxpos)/start.ops"/>
+    <arg name="DEBUG" value="false"/>
+  </include>
+
+</launch>

@@ -22,11 +22,13 @@ depl:import("rtt_rosnode")
 ros = gs:provides("ros")
 ros:import("rtt_roscomm")
 ros:import("rtt_std_msgs")
+ros:import("rtt_std_srvs")
 ros:import("rtt_rospack")
 
 
 ros:import("soem_master")
 ros:import("rtt_soem_maxpos")
+ros:import("rtt_maxpos_msgs")
 
 
 
@@ -76,12 +78,19 @@ depl:stream("Master.Slave_1001.modes_of_operation_display",
         rtt.provides("ros"):topic("/modes_of_operation_display"))
 
 depl:loadService("Master","rosservice") 
-Master:provides("rosservice")
+rs=Master:provides("rosservice")
+
 connect=rs:getOperation("connect")
        
-connect("Master.Slave_1001.velocity_ramp_service", "/VelocityRamp", 
+connect("Slave_1001.velocity_ramp_service", "MaxPos/VelocityRamp", 
   "maxpos_msgs/VelocityProfile")
         
+connect("Slave_1001.bring_operational_service", "MaxPos/BringOperational", 
+  "std_srvs/Empty")
+
+connect("Slave_1001.disable_operation_service", "MaxPos/Disable", 
+  "std_srvs/Empty")
+
 
 target_position = rttlib.port_clone_conn(s:getPort("target_position"))
 target_velocity = rttlib.port_clone_conn(s:getPort("target_velocity"))
@@ -104,6 +113,7 @@ to bring to operational state:
     reset()
     set_mode_of_operation(9)--velocity
     switch_on()
+    enable_operation()
 velocity_ramp(60,10)
 
 --]]

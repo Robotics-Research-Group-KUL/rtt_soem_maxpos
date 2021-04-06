@@ -55,6 +55,7 @@ void SoemMaxPos::cw_switch_on(){//0xxx x111
 	new_control_word.set(0);
 	new_control_word.set(1);
 	new_control_word.set(2);
+	velocity_ramp(0,100);
 }
 void SoemMaxPos::cw_switch_on_and_enable_operation(){//0xxx 1111
 	new_control_word.set(7,false);
@@ -86,11 +87,32 @@ void SoemMaxPos::cw_enable_operation(){// 0xxx 1111
 	new_control_word.set(2);
 	new_control_word.set(3);
 }
+
+void SoemMaxPos::bring_operational(){
+	bring_to_operational=true;
+}
+
 void SoemMaxPos::cw_fault_reset(){// 1xxx xxxx (should be 0xxx xxxx before)
 	new_control_word.set(7);
 }
+void SoemMaxPos::escalate_state_machine(std::bitset<16> state){
+	  std::bitset<8> state_short(state.to_ulong());//discard Most Significant 8 bits
+	  state_short.set(7,false);
+	  uint8 s=(uint)state_short.to_ulong();
+
+	  if (NOT_READY_TO_SWITCH_ON==s) { cw_fault_reset(); }
+	  else if (SWITCH_ON_DISABLED==s)     { cw_reset(); }
+	  else if (READY_TO_SWITCH_ON==s)     { cw_switch_on(); }
+	  else if (SWITCHED_ON==s)            {
+		  cw_enable_operation();
+		  bring_to_operational=false;
+	  }
+	  else if (FAULT==s)                  { cw_fault_reset();}
+	  else {  std::cout<<"ERROR in escalate_state_machine "<<std::endl;}
+}
+
 bool SoemMaxPos::velocity_ramp_service(maxpos_msgs::VelocityProfile::Request& request,
-		  maxpos_msgs::VelocityProfile::Response response){
+		  maxpos_msgs::VelocityProfile::Response& response){
 	response.Ok=velocity_ramp(request.TargetRPM,request.Accelleration);
 	return true;
 }
@@ -98,7 +120,7 @@ bool  SoemMaxPos::velocity_ramp(double velocity,double accelleration){
 	if(false==_set_mode_of_operation(3)) {
 		return false;
 	}
-	int speed=(int)velocity;
+	int speed=(int)(velocity*gear_ratio);
 	uint accel=(uint)accelleration;
 
 
@@ -121,6 +143,7 @@ SoemMaxPos::SoemMaxPos(ec_slavet* mem_loc) :
 , encoder_thick_per_revolution(512)
 , gear_ratio(1.0)
 , motor_rated_torque(0.0)
+,bring_to_operational(false)
 
 {
 	m_service->doc(std::string("MaxPos") + std::string(
@@ -186,6 +209,12 @@ SoemMaxPos::SoemMaxPos(ec_slavet* mem_loc) :
 					" min value 1, max value TBD");
 	m_service->addOperation("velocity_ramp_service", &SoemMaxPos::velocity_ramp_service, this, RTT::ClientThread);
 
+	m_service->addOperation("bring_operational", &SoemMaxPos::bring_operational, this, RTT::OwnThread);
+
+	m_service->addOperation("bring_operational_service", &SoemMaxPos::bring_operational_service, this, RTT::ClientThread);
+	m_service->addOperation("disable_operation_service", &SoemMaxPos::disable_operation_service, this, RTT::ClientThread);
+
+
 	status_word_msg.data="NOT_READY_TO_SWITCH_ON"; //set longest string
 	status_word_outport.setDataSample(status_word_msg);
 }
@@ -240,6 +269,7 @@ bool SoemMaxPos::configure()
 				<<" n_of_bytes: "<<n_of_bytes<<" sizeof(revision_number): "<<sizeof(revision_number)  << endlog();
 		return false;
 	}
+	//TODO MAKE CHECK ON VERSION
 	uint32 most_significant_bit=(revision_number & 0xFFFF0000);
 	uint32 least_significant_bit=revision_number & 0x0000FFFF;
 	std::cout<<"Software version: "<< std::hex<<most_significant_bit<<std::endl;
@@ -313,9 +343,12 @@ void SoemMaxPos::update()
 		{
 			if (!state_to_string(status_word,status_word_msg.data))
 				status_word_msg.data="ERROR_IN_STATE_INTERPRETATION";
+
 			status_word_outport.write(status_word_msg);
+
 		}
-		//check most significative 8 bit
+
+
 		uint8 sw_ms=static_cast<uint8>(status_word.to_ulong()>>8);
 		uint8 lsw_ms=static_cast<uint8>(last_status_word.to_ulong()>>8);
 		if (sw_ms!=lsw_ms)
@@ -327,6 +360,12 @@ void SoemMaxPos::update()
 			status_word_mode_dep_outport.write(status_word_high);
 		}
 		last_status_word=status_word;
+
+	}
+	//code to escalate the state machine of maxpos;
+	if(bring_to_operational){
+				escalate_state_machine(status_word);
+		//check most significative 8 bit
 	}
 	if  (digital_inputs.data!=last_digital_inputs.data){
 		digital_inputs_outport.write(digital_inputs);

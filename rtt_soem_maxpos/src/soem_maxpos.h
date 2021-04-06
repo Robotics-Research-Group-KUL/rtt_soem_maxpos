@@ -37,6 +37,7 @@
 #include <std_msgs/UInt32.h>
 #include <std_msgs/Int32.h>
 #include <maxpos_msgs/VelocityProfile.h>
+#include <std_srvs/Empty.h>
 /*
   [0x0000.0] 0x6040:0x00 0x10 UNSIGNED16   Controlword
   [0x0002.0] 0x607A:0x00 0x20 INTEGER32    Target Position
@@ -140,11 +141,21 @@ public:
 
   bool velocity_ramp(double velocity,double accelleration);
   bool velocity_ramp_service(maxpos_msgs::VelocityProfile::Request& request,
-		  maxpos_msgs::VelocityProfile::Response response);
+		  maxpos_msgs::VelocityProfile::Response& response);
   bool set_mode_of_operation(int mode);
 
   bool _set_mode_of_operation(int mode);
+
+  void bring_operational();
+  bool bring_operational_service(std_srvs::Empty::Request& request,
+		  std_srvs::Empty::Response& response)
+  {bring_operational(); return true;};
+  void escalate_state_machine(std::bitset<16> state);
+  bool disable_operation_service(std_srvs::Empty::Request& request,
+  		  std_srvs::Empty::Response& response)
+    {cw_disable_operation(); return true;};
 private:
+
 
 
   //RTT::OutputPort<std::vector<double> > position_outport;
@@ -192,6 +203,7 @@ private:
 
   int downsample;
   int8 current_mode_of_operation;
+  bool bring_to_operational;
 
 };
 
