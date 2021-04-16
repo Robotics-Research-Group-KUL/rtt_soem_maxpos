@@ -1,5 +1,9 @@
 # MAXPOS driver
 
+## NOTE
+ - the master branch is still using an old firmware. please check if the PDO mapping is correct before use
+ - The ros_service branch is using the firmaware 1.2.1. the Cyclic velocity control is working correctly.
+
 ## Intro
 
 This driver for orocos soem master compoennt allows to use connect via Ethercat with the maxon max-pos controller.
