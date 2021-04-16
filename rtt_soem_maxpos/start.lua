@@ -44,7 +44,7 @@ depl:loadComponent("Master","soem_master::SoemMasterComponent")
 
 Master=depl:getPeer("Master")
 
-Master:getProperty("ifname"):set("enxe4b97ab11172")
+Master:getProperty("ifname"):set("enp9s0f0")
 
 Master:setPeriod(0.01)
 
